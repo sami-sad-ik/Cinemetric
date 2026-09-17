@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model content {
+  id String @id @default(uuid(7))
+
+  title             String              @db.VarChar(100)
+  type              contentType
+  genre             contentGenre[]
+  releaseYear       Int
+  synopsis          String              @db.VarChar(500)
+  director          String              @db.VarChar(100)
+  streamingPlatform streamingPlatform[]
+  priceTier         PriceTier           @default(FREE)
+  cast              String[]            @db.VarChar(100)
+  youtubeVideoId    String?             @db.VarChar(20)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  @@index([title], name: "idx_title")
+  @@map("contents")
+}
+
+enum contentType {
+  movie
+  series
+}
+
+enum contentGenre {
+  action
+  comedy
+  drama
+  fantasy
+  horror
+  mystery
+  romance
+  thriller
+  family
+}
+
+enum streamingPlatform {
+  netflix
+  disneyPlus
+  amazonPrime
+  appleTvPlus
+}
+
+enum PriceTier {
+  FREE
+  PREMIUM
+}
