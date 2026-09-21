@@ -543,10 +543,6 @@ export type contentCreatecastInput = {
   set: string[]
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type EnumcontentTypeFieldUpdateOperationsInput = {
   set?: $Enums.contentType
 }
@@ -576,14 +572,6 @@ export type EnumPriceTierFieldUpdateOperationsInput = {
 export type contentUpdatecastInput = {
   set?: string[]
   push?: string | string[]
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 

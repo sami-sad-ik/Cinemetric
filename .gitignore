@@ -8,3 +8,5 @@ dist
 .claude/skills/
 .windsurf/skills/
 skills-lock.json
+
+./src/generated

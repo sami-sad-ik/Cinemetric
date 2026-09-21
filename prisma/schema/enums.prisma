@@ -1,0 +1,40 @@
+enum Role {
+    USER
+    ADMIN
+    SUPER_ADMIN
+}
+
+enum UserStatus {
+    ACTIVE
+    DELETED
+    BLOCKED
+}
+
+enum contentType {
+    movie
+    series
+}
+
+enum contentGenre {
+    action
+    comedy
+    drama
+    fantasy
+    horror
+    mystery
+    romance
+    thriller
+    family
+}
+
+enum streamingPlatform {
+    netflix
+    disneyPlus
+    amazonPrime
+    appleTvPlus
+}
+
+enum PriceTier {
+    FREE
+    PREMIUM
+}
