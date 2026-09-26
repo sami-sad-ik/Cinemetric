@@ -1,0 +1,17 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/speciality
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: data
+      value: |-
+        {
+            "title" : "theology"
+        }
+    - type: file
+      key: file
+      src: /C:/Users/Mohammad Sami Sadiq/Pictures/Screenshots/2.png
+settings: {}
+order: 9000

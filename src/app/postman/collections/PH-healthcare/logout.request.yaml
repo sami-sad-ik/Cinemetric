@@ -1,0 +1,18 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/auth/logout
+method: POST
+headers:
+  Origin: http://localhost:5000
+body:
+  type: text
+  content: "{\r
+
+    \    \"name\": \"patient1\",\r
+
+    \    \"email\": \"patient1@user.com\",\r
+
+    \    \"password\": \"asdfasdf123\"\r
+
+    }"
+settings: {}
+order: 11000

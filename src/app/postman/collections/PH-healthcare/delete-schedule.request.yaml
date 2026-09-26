@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/schedule/019de860-21a9-751b-94a3-de84690bdc73
+method: DELETE
+settings: {}
+order: 21000

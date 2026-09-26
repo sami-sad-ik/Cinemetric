@@ -1,0 +1,20 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/doctor-schedule
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"scheduleIds\": [\r
+
+    \        \"019de860-0deb-7069-9db4-7c3099389cbd\",\r
+
+    \        \"019de860-101a-718a-96f5-c8fb80439250\",\r
+
+    \        \"019de860-1249-711a-b5d3-86ea2809e922\"\r
+
+    \    ]\r
+
+    }"
+settings: {}
+order: 17000

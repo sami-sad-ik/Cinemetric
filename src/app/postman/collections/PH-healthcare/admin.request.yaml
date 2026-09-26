@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/admin/019cf155-97dc-7037-a808-a5cca7d9e120
+method: GET
+settings: {}
+order: 6000

@@ -1,0 +1,45 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/content
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"title\": \"cinema1\",\r
+
+    \    \"type\": \"movie\",\r
+
+    \    \"genre\": [\r
+
+    \        \"drama\"\r
+
+    \    ],\r
+
+    \    \"releaseYear\": 2027,\r
+
+    \    \"director\": \"nolan\",\r
+
+    \    \"synopsis\": \"Too good movie\",\r
+
+    \    \"streamingPlatform\": [\r
+
+    \        \"netflix\",\r
+
+    \        \"amazonPrime\"\r
+
+    \    ],\r
+
+    \    \"priceTier\": \"FREE\",\r
+
+    \    \"cast\": [\r
+
+    \        \"serene\",\r
+
+    \        \"doe\",\r
+
+    \        \"fred\"\r
+
+    \    ]\r
+
+    }"
+order: 1000

@@ -6,10 +6,11 @@ import { auth } from "./app/lib/auth";
 
 const app = express();
 
+app.use("/api/auth", toNodeHandler(auth));
+
 // Enable URL-encoded form data parsing
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/auth", toNodeHandler(auth));
 
 // Middleware to parse JSON bodies
 app.use(express.json());

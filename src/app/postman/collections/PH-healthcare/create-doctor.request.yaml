@@ -1,0 +1,46 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/user/create-doctor
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"password\": \"asdfasdf\",\r
+
+    \    \"doctor\": {\r
+
+    \        \"name\": \"test 2 doctor\",\r
+
+    \        \"email\": \"alpha@sigma.com\",\r
+
+    \        \"profilePhoto\": \"https://example.com/images/john-doe.jpg\",\r
+
+    \        \"contactNumber\": \"+88017123454569\",\r
+
+    \        \"address\": \"Dhaka, Bangladesh\",\r
+
+    \        \"registrationNumber\": \"BMDC-123\",\r
+
+    \        \"gender\": \"MALE\",\r
+
+    \        \"appointmentFee\": 500,\r
+
+    \        \"qualification\": \"MBBS, FCPS\",\r
+
+    \        \"experience\": 7,\r
+
+    \        \"currentWorkingPlace\": \"Chattogram Medical College Hospital\",\r
+
+    \        \"designation\": \"Consultant\"\r
+
+    \    },\r
+
+    \    \"specialities\": [\r
+
+    \        \"019cfb90-994b-77f5-a71f-2eb69f13d17e\"\r
+
+    \    ]\r
+
+    }"
+settings: {}
+order: 8000

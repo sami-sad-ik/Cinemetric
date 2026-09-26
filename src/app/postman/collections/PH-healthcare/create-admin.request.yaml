@@ -1,0 +1,22 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/user/create-admin
+method: POST
+body:
+  type: json
+  content: "\"password\" : \"asdfasd\",\r
+
+    \    \"admin\": {\r
+
+    \        \"name\": \"mr Admin\",\r
+
+    \        \"email\": \"mr@admin.com\",\r
+
+    \        \"contactNumber\": \"+1234567890\",\r
+
+    \        \"profilePhoto\": \"https://example.com/photo.jpg\"\r
+
+    \    }\r
+
+    }"
+settings: {}
+order: 5000

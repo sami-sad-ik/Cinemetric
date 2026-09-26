@@ -1,0 +1,14 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/appointment/book-appointment
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"doctorId\": \"019d088d-e640-7655-b958-71faac81130b\",\r
+
+    \    \"scheduleId\": \"019de860-0deb-7069-9db4-7c3099389cbd\"\r
+
+    }"
+settings: {}
+order: 1000

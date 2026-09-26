@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/doctor-schedule/my-schedule
+method: GET
+settings: {}
+order: 18000

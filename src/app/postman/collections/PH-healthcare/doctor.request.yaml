@@ -1,0 +1,46 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/doctor?specialities.speciality.title=nefrology
+method: GET
+queryParams:
+  - key: page
+    value: "1"
+    disabled: true
+  - key: limit
+    value: "2"
+    disabled: true
+  - key: gender
+    value: FEMALE
+    disabled: true
+  - key: searchTerm
+    value: nefro
+    disabled: true
+  - key: appointmentFee[gte]
+    value: "800"
+    disabled: true
+  - key: appointmentFee[lte]
+    value: "1000"
+    disabled: true
+  - key: sortBy
+    value: name
+    disabled: true
+  - key: sortOrder
+    value: desc
+    disabled: true
+  - key: user.role
+    value: DOCTOR
+    disabled: true
+  - key: specialities.speciality.title
+    value: nefrology
+body:
+  type: json
+  content: " {\r
+
+    \        \"name\": \"Mr. Admin\",\r
+
+    \        \"contactNumber\": \"01234567890\",\r
+
+    \        \"profilePhoto\": \"https://example.com/photo.jpg\"\r
+
+    \    }"
+settings: {}
+order: 7000

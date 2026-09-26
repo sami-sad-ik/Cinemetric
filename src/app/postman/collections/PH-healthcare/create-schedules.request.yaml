@@ -1,0 +1,18 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/schedule
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"startDate\": \"2026-05-06\",\r
+
+    \    \"endDate\": \"2026-05-08\",\r
+
+    \    \"startTime\": \"15:00\",\r
+
+    \    \"endTime\": \"21:00\"\r
+
+    }"
+settings: {}
+order: 16000

@@ -1,0 +1,40 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/doctor/019ce4c0-ba87-751a-acc5-19642c71404a
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \  \"name\": \"Mr. XYZ\",\r
+
+    \  \"email\": \"mr@xsdf.com\",\r
+
+    \  \"profilePhoto\": \"https://example.com/images/john-doe.png\",\r
+
+    \  \"contactNumber\": \"+88017123456779\",\r
+
+    \  \"address\": \"Chattogram, Bangladesh\",\r
+
+    \  \"registrationNumber\": \"BMDC-12345\",\r
+
+    \  \"gender\": \"MALE\",\r
+
+    \  \"appointmentFee\": 500,\r
+
+    \  \"qualification\": \"MBBS, FCPS (Medicine)\",\r
+
+    \  \"experience\": 7,\r
+
+    \  \"currentWorkingPlace\": \"Chattogram Medical College Hospital\",\r
+
+    \  \"designation\": \"Departmental head\",\r
+
+    \  \"specialities\": [\r
+
+    \    \"019ccef9-2497-76c9-b807-a705a779ffb7\"\r
+
+    \  ]\r
+
+    }"
+settings: {}
+order: 13000

@@ -1,0 +1,9 @@
+workspace:
+  id: ""
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Cine-metric: 51980227-1275008a-8e8e-4bb4-8d94-db7563130314
+    ../postman/collections/PH-healthcare: 51980227-75c8e5ea-262b-406b-bb1f-39bbc13361b6

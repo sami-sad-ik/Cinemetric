@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/doctor-schedule/019d088d-e640-7655-b958-71faac81130b/schedules/019de860-0deb-7069-9db4-7c3099389cbd
+method: GET
+body:
+  type: json
+  content: ""
+settings: {}
+order: 19000

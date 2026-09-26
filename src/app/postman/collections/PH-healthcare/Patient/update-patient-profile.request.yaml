@@ -1,0 +1,44 @@
+$kind: http-request
+url: http://localhost:5000/api/v1/patients/update-my-profile
+method: PATCH
+body:
+  type: formdata
+  content:
+    - type: text
+      key: data
+      value: |-
+        {
+            "patientInfo": {
+                "name": "John Doe",
+                "contactNumber": "+8801712345678",
+                "address": "123 Mirpur Road, Dhaka, Bangladesh"
+            },
+            "patientHealthData": {
+                "gender": "MALE",
+                "dateOfBirth": "1990-05-15",
+                "bloodGroup": "A_POSITIVE",
+                "hasAllergies": true,
+                "hasDiabetes": false,
+                "height": "175",
+                "weight": "70",
+                "smokingStatus": false,
+                "dietaryPreference": "Non-Vegetarian",
+                "pregnancyStatus": false,
+                "mentalHealthHistory": "Mild anxiety in 2020, resolved",
+                "immunizationStatus": "Fully vaccinated",
+                "hasPastSurgeries": false,
+                "recentAnxiety": false,
+                "recentDepression": false,
+                "maritalStatus": "MARRIED"
+            }
+        }
+    - type: file
+      key: profilePhoto
+      src: /C:/Users/Mohammad Sami Sadiq/Pictures/Screenshots/Screenshot 2025-06-15 180653.png
+    - type: file
+      key: medicalReports
+      src:
+        - /C:/Users/Mohammad Sami Sadiq/Downloads/blood-sugar-report-fbs-pp_watermark.pdf
+        - /C:/Users/Mohammad Sami Sadiq/Downloads/glycosylated-haemoglobin-gly-–-c_watermark-1.pdf
+settings: {}
+order: 1000
