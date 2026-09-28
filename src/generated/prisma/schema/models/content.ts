@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `content` model and its related types.
+ * This file exports the `Content` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,10 +13,10 @@ import type * as $Enums from "../enums"
 import type * as Prisma from "../internal/prismaNamespace"
 
 /**
- * Model content
+ * Model Content
  * 
  */
-export type contentModel = runtime.Types.Result.DefaultSelection<Prisma.$contentPayload>
+export type ContentModel = runtime.Types.Result.DefaultSelection<Prisma.$ContentPayload>
 
 export type AggregateContent = {
   _count: ContentCountAggregateOutputType | null
@@ -131,37 +131,37 @@ export type ContentCountAggregateInputType = {
 
 export type ContentAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which content to aggregate.
+   * Filter which Content to aggregate.
    */
-  where?: Prisma.contentWhereInput
+  where?: Prisma.ContentWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of contents to fetch.
+   * Determine the order of Contents to fetch.
    */
-  orderBy?: Prisma.contentOrderByWithRelationInput | Prisma.contentOrderByWithRelationInput[]
+  orderBy?: Prisma.ContentOrderByWithRelationInput | Prisma.ContentOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.contentWhereUniqueInput
+  cursor?: Prisma.ContentWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` contents from the position of the cursor.
+   * Take `±n` Contents from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` contents.
+   * Skip the first `n` Contents.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned contents
+   * Count returned Contents
   **/
   _count?: true | ContentCountAggregateInputType
   /**
@@ -201,11 +201,11 @@ export type GetContentAggregateType<T extends ContentAggregateArgs> = {
 
 
 
-export type contentGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.contentWhereInput
-  orderBy?: Prisma.contentOrderByWithAggregationInput | Prisma.contentOrderByWithAggregationInput[]
+export type ContentGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContentWhereInput
+  orderBy?: Prisma.ContentOrderByWithAggregationInput | Prisma.ContentOrderByWithAggregationInput[]
   by: Prisma.ContentScalarFieldEnum[] | Prisma.ContentScalarFieldEnum
-  having?: Prisma.contentScalarWhereWithAggregatesInput
+  having?: Prisma.ContentScalarWhereWithAggregatesInput
   take?: number
   skip?: number
   _count?: ContentCountAggregateInputType | true
@@ -236,7 +236,7 @@ export type ContentGroupByOutputType = {
   _max: ContentMaxAggregateOutputType | null
 }
 
-export type GetContentGroupByPayload<T extends contentGroupByArgs> = Prisma.PrismaPromise<
+export type GetContentGroupByPayload<T extends ContentGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ContentGroupByOutputType, T['by']> &
       {
@@ -251,26 +251,28 @@ export type GetContentGroupByPayload<T extends contentGroupByArgs> = Prisma.Pris
 
 
 
-export type contentWhereInput = {
-  AND?: Prisma.contentWhereInput | Prisma.contentWhereInput[]
-  OR?: Prisma.contentWhereInput[]
-  NOT?: Prisma.contentWhereInput | Prisma.contentWhereInput[]
-  id?: Prisma.StringFilter<"content"> | string
-  title?: Prisma.StringFilter<"content"> | string
-  type?: Prisma.EnumcontentTypeFilter<"content"> | $Enums.contentType
-  genre?: Prisma.EnumcontentGenreNullableListFilter<"content">
-  releaseYear?: Prisma.IntFilter<"content"> | number
-  synopsis?: Prisma.StringFilter<"content"> | string
-  director?: Prisma.StringFilter<"content"> | string
-  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"content">
-  priceTier?: Prisma.EnumPriceTierFilter<"content"> | $Enums.PriceTier
-  cast?: Prisma.StringNullableListFilter<"content">
-  youtubeVideoId?: Prisma.StringNullableFilter<"content"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"content"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"content"> | Date | string
+export type ContentWhereInput = {
+  AND?: Prisma.ContentWhereInput | Prisma.ContentWhereInput[]
+  OR?: Prisma.ContentWhereInput[]
+  NOT?: Prisma.ContentWhereInput | Prisma.ContentWhereInput[]
+  id?: Prisma.StringFilter<"Content"> | string
+  title?: Prisma.StringFilter<"Content"> | string
+  type?: Prisma.EnumcontentTypeFilter<"Content"> | $Enums.contentType
+  genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
+  releaseYear?: Prisma.IntFilter<"Content"> | number
+  synopsis?: Prisma.StringFilter<"Content"> | string
+  director?: Prisma.StringFilter<"Content"> | string
+  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
+  priceTier?: Prisma.EnumPriceTierFilter<"Content"> | $Enums.PriceTier
+  cast?: Prisma.StringNullableListFilter<"Content">
+  youtubeVideoId?: Prisma.StringNullableFilter<"Content"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Content"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Content"> | Date | string
+  watchlists?: Prisma.WatchlistListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
-export type contentOrderByWithRelationInput = {
+export type ContentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -284,28 +286,32 @@ export type contentOrderByWithRelationInput = {
   youtubeVideoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  watchlists?: Prisma.WatchlistOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
-export type contentWhereUniqueInput = Prisma.AtLeast<{
+export type ContentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  AND?: Prisma.contentWhereInput | Prisma.contentWhereInput[]
-  OR?: Prisma.contentWhereInput[]
-  NOT?: Prisma.contentWhereInput | Prisma.contentWhereInput[]
-  title?: Prisma.StringFilter<"content"> | string
-  type?: Prisma.EnumcontentTypeFilter<"content"> | $Enums.contentType
-  genre?: Prisma.EnumcontentGenreNullableListFilter<"content">
-  releaseYear?: Prisma.IntFilter<"content"> | number
-  synopsis?: Prisma.StringFilter<"content"> | string
-  director?: Prisma.StringFilter<"content"> | string
-  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"content">
-  priceTier?: Prisma.EnumPriceTierFilter<"content"> | $Enums.PriceTier
-  cast?: Prisma.StringNullableListFilter<"content">
-  youtubeVideoId?: Prisma.StringNullableFilter<"content"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"content"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"content"> | Date | string
+  AND?: Prisma.ContentWhereInput | Prisma.ContentWhereInput[]
+  OR?: Prisma.ContentWhereInput[]
+  NOT?: Prisma.ContentWhereInput | Prisma.ContentWhereInput[]
+  title?: Prisma.StringFilter<"Content"> | string
+  type?: Prisma.EnumcontentTypeFilter<"Content"> | $Enums.contentType
+  genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
+  releaseYear?: Prisma.IntFilter<"Content"> | number
+  synopsis?: Prisma.StringFilter<"Content"> | string
+  director?: Prisma.StringFilter<"Content"> | string
+  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
+  priceTier?: Prisma.EnumPriceTierFilter<"Content"> | $Enums.PriceTier
+  cast?: Prisma.StringNullableListFilter<"Content">
+  youtubeVideoId?: Prisma.StringNullableFilter<"Content"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Content"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Content"> | Date | string
+  watchlists?: Prisma.WatchlistListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id">
 
-export type contentOrderByWithAggregationInput = {
+export type ContentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -319,139 +325,147 @@ export type contentOrderByWithAggregationInput = {
   youtubeVideoId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  _count?: Prisma.contentCountOrderByAggregateInput
-  _avg?: Prisma.contentAvgOrderByAggregateInput
-  _max?: Prisma.contentMaxOrderByAggregateInput
-  _min?: Prisma.contentMinOrderByAggregateInput
-  _sum?: Prisma.contentSumOrderByAggregateInput
+  _count?: Prisma.ContentCountOrderByAggregateInput
+  _avg?: Prisma.ContentAvgOrderByAggregateInput
+  _max?: Prisma.ContentMaxOrderByAggregateInput
+  _min?: Prisma.ContentMinOrderByAggregateInput
+  _sum?: Prisma.ContentSumOrderByAggregateInput
 }
 
-export type contentScalarWhereWithAggregatesInput = {
-  AND?: Prisma.contentScalarWhereWithAggregatesInput | Prisma.contentScalarWhereWithAggregatesInput[]
-  OR?: Prisma.contentScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.contentScalarWhereWithAggregatesInput | Prisma.contentScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"content"> | string
-  title?: Prisma.StringWithAggregatesFilter<"content"> | string
-  type?: Prisma.EnumcontentTypeWithAggregatesFilter<"content"> | $Enums.contentType
-  genre?: Prisma.EnumcontentGenreNullableListFilter<"content">
-  releaseYear?: Prisma.IntWithAggregatesFilter<"content"> | number
-  synopsis?: Prisma.StringWithAggregatesFilter<"content"> | string
-  director?: Prisma.StringWithAggregatesFilter<"content"> | string
-  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"content">
-  priceTier?: Prisma.EnumPriceTierWithAggregatesFilter<"content"> | $Enums.PriceTier
-  cast?: Prisma.StringNullableListFilter<"content">
-  youtubeVideoId?: Prisma.StringNullableWithAggregatesFilter<"content"> | string | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"content"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"content"> | Date | string
+export type ContentScalarWhereWithAggregatesInput = {
+  AND?: Prisma.ContentScalarWhereWithAggregatesInput | Prisma.ContentScalarWhereWithAggregatesInput[]
+  OR?: Prisma.ContentScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.ContentScalarWhereWithAggregatesInput | Prisma.ContentScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"Content"> | string
+  title?: Prisma.StringWithAggregatesFilter<"Content"> | string
+  type?: Prisma.EnumcontentTypeWithAggregatesFilter<"Content"> | $Enums.contentType
+  genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
+  releaseYear?: Prisma.IntWithAggregatesFilter<"Content"> | number
+  synopsis?: Prisma.StringWithAggregatesFilter<"Content"> | string
+  director?: Prisma.StringWithAggregatesFilter<"Content"> | string
+  streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
+  priceTier?: Prisma.EnumPriceTierWithAggregatesFilter<"Content"> | $Enums.PriceTier
+  cast?: Prisma.StringNullableListFilter<"Content">
+  youtubeVideoId?: Prisma.StringNullableWithAggregatesFilter<"Content"> | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Content"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Content"> | Date | string
 }
 
-export type contentCreateInput = {
+export type ContentCreateInput = {
   id?: string
   title: string
   type: $Enums.contentType
-  genre?: Prisma.contentCreategenreInput | $Enums.contentGenre[]
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
   director: string
-  streamingPlatform?: Prisma.contentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
-  cast?: Prisma.contentCreatecastInput | string[]
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  watchlists?: Prisma.WatchlistCreateNestedManyWithoutContentInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutContentInput
+}
+
+export type ContentUncheckedCreateInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  watchlists?: Prisma.WatchlistUncheckedCreateNestedManyWithoutContentInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutContentInput
+}
+
+export type ContentUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  watchlists?: Prisma.WatchlistUpdateManyWithoutContentNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutContentNestedInput
+}
+
+export type ContentUncheckedUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  watchlists?: Prisma.WatchlistUncheckedUpdateManyWithoutContentNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutContentNestedInput
+}
+
+export type ContentCreateManyInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
   youtubeVideoId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type contentUncheckedCreateInput = {
-  id?: string
-  title: string
-  type: $Enums.contentType
-  genre?: Prisma.contentCreategenreInput | $Enums.contentGenre[]
-  releaseYear: number
-  synopsis: string
-  director: string
-  streamingPlatform?: Prisma.contentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
-  priceTier?: $Enums.PriceTier
-  cast?: Prisma.contentCreatecastInput | string[]
-  youtubeVideoId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type contentUpdateInput = {
+export type ContentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
-  genre?: Prisma.contentUpdategenreInput | $Enums.contentGenre[]
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingPlatform?: Prisma.contentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
-  cast?: Prisma.contentUpdatecastInput | string[]
+  cast?: Prisma.ContentUpdatecastInput | string[]
   youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type contentUncheckedUpdateInput = {
+export type ContentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
-  genre?: Prisma.contentUpdategenreInput | $Enums.contentGenre[]
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingPlatform?: Prisma.contentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
-  cast?: Prisma.contentUpdatecastInput | string[]
-  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type contentCreateManyInput = {
-  id?: string
-  title: string
-  type: $Enums.contentType
-  genre?: Prisma.contentCreategenreInput | $Enums.contentGenre[]
-  releaseYear: number
-  synopsis: string
-  director: string
-  streamingPlatform?: Prisma.contentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
-  priceTier?: $Enums.PriceTier
-  cast?: Prisma.contentCreatecastInput | string[]
-  youtubeVideoId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type contentUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
-  genre?: Prisma.contentUpdategenreInput | $Enums.contentGenre[]
-  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
-  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
-  director?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingPlatform?: Prisma.contentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
-  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
-  cast?: Prisma.contentUpdatecastInput | string[]
-  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type contentUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
-  genre?: Prisma.contentUpdategenreInput | $Enums.contentGenre[]
-  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
-  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
-  director?: Prisma.StringFieldUpdateOperationsInput | string
-  streamingPlatform?: Prisma.contentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
-  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
-  cast?: Prisma.contentUpdatecastInput | string[]
+  cast?: Prisma.ContentUpdatecastInput | string[]
   youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -481,7 +495,7 @@ export type StringNullableListFilter<$PrismaModel = never> = {
   isEmpty?: boolean
 }
 
-export type contentCountOrderByAggregateInput = {
+export type ContentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -497,11 +511,11 @@ export type contentCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type contentAvgOrderByAggregateInput = {
+export type ContentAvgOrderByAggregateInput = {
   releaseYear?: Prisma.SortOrder
 }
 
-export type contentMaxOrderByAggregateInput = {
+export type ContentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -514,7 +528,7 @@ export type contentMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type contentMinOrderByAggregateInput = {
+export type ContentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -527,19 +541,24 @@ export type contentMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type contentSumOrderByAggregateInput = {
+export type ContentSumOrderByAggregateInput = {
   releaseYear?: Prisma.SortOrder
 }
 
-export type contentCreategenreInput = {
+export type ContentScalarRelationFilter = {
+  is?: Prisma.ContentWhereInput
+  isNot?: Prisma.ContentWhereInput
+}
+
+export type ContentCreategenreInput = {
   set: $Enums.contentGenre[]
 }
 
-export type contentCreatestreamingPlatformInput = {
+export type ContentCreatestreamingPlatformInput = {
   set: $Enums.streamingPlatform[]
 }
 
-export type contentCreatecastInput = {
+export type ContentCreatecastInput = {
   set: string[]
 }
 
@@ -547,7 +566,7 @@ export type EnumcontentTypeFieldUpdateOperationsInput = {
   set?: $Enums.contentType
 }
 
-export type contentUpdategenreInput = {
+export type ContentUpdategenreInput = {
   set?: $Enums.contentGenre[]
   push?: $Enums.contentGenre | $Enums.contentGenre[]
 }
@@ -560,7 +579,7 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type contentUpdatestreamingPlatformInput = {
+export type ContentUpdatestreamingPlatformInput = {
   set?: $Enums.streamingPlatform[]
   push?: $Enums.streamingPlatform | $Enums.streamingPlatform[]
 }
@@ -569,14 +588,267 @@ export type EnumPriceTierFieldUpdateOperationsInput = {
   set?: $Enums.PriceTier
 }
 
-export type contentUpdatecastInput = {
+export type ContentUpdatecastInput = {
   set?: string[]
   push?: string | string[]
 }
 
+export type ContentCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.ContentCreateWithoutReviewsInput, Prisma.ContentUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ContentCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.ContentWhereUniqueInput
+}
+
+export type ContentUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContentCreateWithoutReviewsInput, Prisma.ContentUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ContentCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.ContentUpsertWithoutReviewsInput
+  connect?: Prisma.ContentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContentUpdateToOneWithWhereWithoutReviewsInput, Prisma.ContentUpdateWithoutReviewsInput>, Prisma.ContentUncheckedUpdateWithoutReviewsInput>
+}
+
+export type ContentCreateNestedOneWithoutWatchlistsInput = {
+  create?: Prisma.XOR<Prisma.ContentCreateWithoutWatchlistsInput, Prisma.ContentUncheckedCreateWithoutWatchlistsInput>
+  connectOrCreate?: Prisma.ContentCreateOrConnectWithoutWatchlistsInput
+  connect?: Prisma.ContentWhereUniqueInput
+}
+
+export type ContentUpdateOneRequiredWithoutWatchlistsNestedInput = {
+  create?: Prisma.XOR<Prisma.ContentCreateWithoutWatchlistsInput, Prisma.ContentUncheckedCreateWithoutWatchlistsInput>
+  connectOrCreate?: Prisma.ContentCreateOrConnectWithoutWatchlistsInput
+  upsert?: Prisma.ContentUpsertWithoutWatchlistsInput
+  connect?: Prisma.ContentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContentUpdateToOneWithWhereWithoutWatchlistsInput, Prisma.ContentUpdateWithoutWatchlistsInput>, Prisma.ContentUncheckedUpdateWithoutWatchlistsInput>
+}
+
+export type ContentCreateWithoutReviewsInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  watchlists?: Prisma.WatchlistCreateNestedManyWithoutContentInput
+}
+
+export type ContentUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  watchlists?: Prisma.WatchlistUncheckedCreateNestedManyWithoutContentInput
+}
+
+export type ContentCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.ContentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContentCreateWithoutReviewsInput, Prisma.ContentUncheckedCreateWithoutReviewsInput>
+}
+
+export type ContentUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.ContentUpdateWithoutReviewsInput, Prisma.ContentUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.ContentCreateWithoutReviewsInput, Prisma.ContentUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.ContentWhereInput
+}
+
+export type ContentUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.ContentWhereInput
+  data: Prisma.XOR<Prisma.ContentUpdateWithoutReviewsInput, Prisma.ContentUncheckedUpdateWithoutReviewsInput>
+}
+
+export type ContentUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  watchlists?: Prisma.WatchlistUpdateManyWithoutContentNestedInput
+}
+
+export type ContentUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  watchlists?: Prisma.WatchlistUncheckedUpdateManyWithoutContentNestedInput
+}
+
+export type ContentCreateWithoutWatchlistsInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reviews?: Prisma.ReviewCreateNestedManyWithoutContentInput
+}
+
+export type ContentUncheckedCreateWithoutWatchlistsInput = {
+  id?: string
+  title: string
+  type: $Enums.contentType
+  genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
+  releaseYear: number
+  synopsis: string
+  director: string
+  streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: $Enums.PriceTier
+  cast?: Prisma.ContentCreatecastInput | string[]
+  youtubeVideoId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutContentInput
+}
+
+export type ContentCreateOrConnectWithoutWatchlistsInput = {
+  where: Prisma.ContentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContentCreateWithoutWatchlistsInput, Prisma.ContentUncheckedCreateWithoutWatchlistsInput>
+}
+
+export type ContentUpsertWithoutWatchlistsInput = {
+  update: Prisma.XOR<Prisma.ContentUpdateWithoutWatchlistsInput, Prisma.ContentUncheckedUpdateWithoutWatchlistsInput>
+  create: Prisma.XOR<Prisma.ContentCreateWithoutWatchlistsInput, Prisma.ContentUncheckedCreateWithoutWatchlistsInput>
+  where?: Prisma.ContentWhereInput
+}
+
+export type ContentUpdateToOneWithWhereWithoutWatchlistsInput = {
+  where?: Prisma.ContentWhereInput
+  data: Prisma.XOR<Prisma.ContentUpdateWithoutWatchlistsInput, Prisma.ContentUncheckedUpdateWithoutWatchlistsInput>
+}
+
+export type ContentUpdateWithoutWatchlistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviews?: Prisma.ReviewUpdateManyWithoutContentNestedInput
+}
+
+export type ContentUncheckedUpdateWithoutWatchlistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumcontentTypeFieldUpdateOperationsInput | $Enums.contentType
+  genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
+  releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
+  synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  director?: Prisma.StringFieldUpdateOperationsInput | string
+  streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
+  priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
+  cast?: Prisma.ContentUpdatecastInput | string[]
+  youtubeVideoId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutContentNestedInput
+}
 
 
-export type contentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+/**
+ * Count Type ContentCountOutputType
+ */
+
+export type ContentCountOutputType = {
+  watchlists: number
+  reviews: number
+}
+
+export type ContentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  watchlists?: boolean | ContentCountOutputTypeCountWatchlistsArgs
+  reviews?: boolean | ContentCountOutputTypeCountReviewsArgs
+}
+
+/**
+ * ContentCountOutputType without action
+ */
+export type ContentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContentCountOutputType
+   */
+  select?: Prisma.ContentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ContentCountOutputType without action
+ */
+export type ContentCountOutputTypeCountWatchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WatchlistWhereInput
+}
+
+/**
+ * ContentCountOutputType without action
+ */
+export type ContentCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
+
+export type ContentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  title?: boolean
+  type?: boolean
+  genre?: boolean
+  releaseYear?: boolean
+  synopsis?: boolean
+  director?: boolean
+  streamingPlatform?: boolean
+  priceTier?: boolean
+  cast?: boolean
+  youtubeVideoId?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  watchlists?: boolean | Prisma.Content$watchlistsArgs<ExtArgs>
+  reviews?: boolean | Prisma.Content$reviewsArgs<ExtArgs>
+  _count?: boolean | Prisma.ContentCountOutputTypeDefaultArgs<ExtArgs>
+}, ExtArgs["result"]["content"]>
+
+export type ContentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   type?: boolean
@@ -592,7 +864,7 @@ export type contentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   updatedAt?: boolean
 }, ExtArgs["result"]["content"]>
 
-export type contentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type ContentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   type?: boolean
@@ -608,23 +880,7 @@ export type contentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   updatedAt?: boolean
 }, ExtArgs["result"]["content"]>
 
-export type contentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  title?: boolean
-  type?: boolean
-  genre?: boolean
-  releaseYear?: boolean
-  synopsis?: boolean
-  director?: boolean
-  streamingPlatform?: boolean
-  priceTier?: boolean
-  cast?: boolean
-  youtubeVideoId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-}, ExtArgs["result"]["content"]>
-
-export type contentSelectScalar = {
+export type ContentSelectScalar = {
   id?: boolean
   title?: boolean
   type?: boolean
@@ -640,11 +896,21 @@ export type contentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type contentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "genre" | "releaseYear" | "synopsis" | "director" | "streamingPlatform" | "priceTier" | "cast" | "youtubeVideoId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
+export type ContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "genre" | "releaseYear" | "synopsis" | "director" | "streamingPlatform" | "priceTier" | "cast" | "youtubeVideoId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
+export type ContentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  watchlists?: boolean | Prisma.Content$watchlistsArgs<ExtArgs>
+  reviews?: boolean | Prisma.Content$reviewsArgs<ExtArgs>
+  _count?: boolean | Prisma.ContentCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type ContentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ContentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
-export type $contentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "content"
-  objects: {}
+export type $ContentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "Content"
+  objects: {
+    watchlists: Prisma.$WatchlistPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
@@ -663,18 +929,18 @@ export type $contentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   composites: {}
 }
 
-export type contentGetPayload<S extends boolean | null | undefined | contentDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$contentPayload, S>
+export type ContentGetPayload<S extends boolean | null | undefined | ContentDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ContentPayload, S>
 
-export type contentCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<contentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+export type ContentCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<ContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
     select?: ContentCountAggregateInputType | true
   }
 
-export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['content'], meta: { name: 'content' } }
+export interface ContentDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Content'], meta: { name: 'Content' } }
   /**
    * Find zero or one Content that matches the filter.
-   * @param {contentFindUniqueArgs} args - Arguments to find a Content
+   * @param {ContentFindUniqueArgs} args - Arguments to find a Content
    * @example
    * // Get one Content
    * const content = await prisma.content.findUnique({
@@ -683,12 +949,12 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findUnique<T extends contentFindUniqueArgs>(args: Prisma.SelectSubset<T, contentFindUniqueArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends ContentFindUniqueArgs>(args: Prisma.SelectSubset<T, ContentFindUniqueArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find one Content that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {contentFindUniqueOrThrowArgs} args - Arguments to find a Content
+   * @param {ContentFindUniqueOrThrowArgs} args - Arguments to find a Content
    * @example
    * // Get one Content
    * const content = await prisma.content.findUniqueOrThrow({
@@ -697,13 +963,13 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findUniqueOrThrow<T extends contentFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, contentFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends ContentFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, ContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Content that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentFindFirstArgs} args - Arguments to find a Content
+   * @param {ContentFindFirstArgs} args - Arguments to find a Content
    * @example
    * // Get one Content
    * const content = await prisma.content.findFirst({
@@ -712,14 +978,14 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findFirst<T extends contentFindFirstArgs>(args?: Prisma.SelectSubset<T, contentFindFirstArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends ContentFindFirstArgs>(args?: Prisma.SelectSubset<T, ContentFindFirstArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find the first Content that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentFindFirstOrThrowArgs} args - Arguments to find a Content
+   * @param {ContentFindFirstOrThrowArgs} args - Arguments to find a Content
    * @example
    * // Get one Content
    * const content = await prisma.content.findFirstOrThrow({
@@ -728,13 +994,13 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  findFirstOrThrow<T extends contentFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, contentFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends ContentFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, ContentFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Find zero or more Contents that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {ContentFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
    * // Get all Contents
    * const contents = await prisma.content.findMany()
@@ -746,11 +1012,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * const contentWithIdOnly = await prisma.content.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends contentFindManyArgs>(args?: Prisma.SelectSubset<T, contentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends ContentFindManyArgs>(args?: Prisma.SelectSubset<T, ContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
    * Create a Content.
-   * @param {contentCreateArgs} args - Arguments to create a Content.
+   * @param {ContentCreateArgs} args - Arguments to create a Content.
    * @example
    * // Create one Content
    * const Content = await prisma.content.create({
@@ -760,11 +1026,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  create<T extends contentCreateArgs>(args: Prisma.SelectSubset<T, contentCreateArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends ContentCreateArgs>(args: Prisma.SelectSubset<T, ContentCreateArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Create many Contents.
-   * @param {contentCreateManyArgs} args - Arguments to create many Contents.
+   * @param {ContentCreateManyArgs} args - Arguments to create many Contents.
    * @example
    * // Create many Contents
    * const content = await prisma.content.createMany({
@@ -774,11 +1040,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    *     
    */
-  createMany<T extends contentCreateManyArgs>(args?: Prisma.SelectSubset<T, contentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends ContentCreateManyArgs>(args?: Prisma.SelectSubset<T, ContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Create many Contents and returns the data saved in the database.
-   * @param {contentCreateManyAndReturnArgs} args - Arguments to create many Contents.
+   * @param {ContentCreateManyAndReturnArgs} args - Arguments to create many Contents.
    * @example
    * // Create many Contents
    * const content = await prisma.content.createManyAndReturn({
@@ -798,11 +1064,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends contentCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, contentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends ContentCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, ContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Delete a Content.
-   * @param {contentDeleteArgs} args - Arguments to delete one Content.
+   * @param {ContentDeleteArgs} args - Arguments to delete one Content.
    * @example
    * // Delete one Content
    * const Content = await prisma.content.delete({
@@ -812,11 +1078,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  delete<T extends contentDeleteArgs>(args: Prisma.SelectSubset<T, contentDeleteArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends ContentDeleteArgs>(args: Prisma.SelectSubset<T, ContentDeleteArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Update one Content.
-   * @param {contentUpdateArgs} args - Arguments to update one Content.
+   * @param {ContentUpdateArgs} args - Arguments to update one Content.
    * @example
    * // Update one Content
    * const content = await prisma.content.update({
@@ -829,11 +1095,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  update<T extends contentUpdateArgs>(args: Prisma.SelectSubset<T, contentUpdateArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends ContentUpdateArgs>(args: Prisma.SelectSubset<T, ContentUpdateArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
    * Delete zero or more Contents.
-   * @param {contentDeleteManyArgs} args - Arguments to filter Contents to delete.
+   * @param {ContentDeleteManyArgs} args - Arguments to filter Contents to delete.
    * @example
    * // Delete a few Contents
    * const { count } = await prisma.content.deleteMany({
@@ -843,13 +1109,13 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  deleteMany<T extends contentDeleteManyArgs>(args?: Prisma.SelectSubset<T, contentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends ContentDeleteManyArgs>(args?: Prisma.SelectSubset<T, ContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Contents.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {ContentUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
    * // Update many Contents
    * const content = await prisma.content.updateMany({
@@ -862,11 +1128,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * })
    * 
    */
-  updateMany<T extends contentUpdateManyArgs>(args: Prisma.SelectSubset<T, contentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends ContentUpdateManyArgs>(args: Prisma.SelectSubset<T, ContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
    * Update zero or more Contents and returns the data updated in the database.
-   * @param {contentUpdateManyAndReturnArgs} args - Arguments to update many Contents.
+   * @param {ContentUpdateManyAndReturnArgs} args - Arguments to update many Contents.
    * @example
    * // Update many Contents
    * const content = await prisma.content.updateManyAndReturn({
@@ -892,11 +1158,11 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends contentUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, contentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends ContentUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, ContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Content.
-   * @param {contentUpsertArgs} args - Arguments to update or create a Content.
+   * @param {ContentUpsertArgs} args - Arguments to update or create a Content.
    * @example
    * // Update or create a Content
    * const content = await prisma.content.upsert({
@@ -911,14 +1177,14 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
    */
-  upsert<T extends contentUpsertArgs>(args: Prisma.SelectSubset<T, contentUpsertArgs<ExtArgs>>): Prisma.Prisma__contentClient<runtime.Types.Result.GetResult<Prisma.$contentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends ContentUpsertArgs>(args: Prisma.SelectSubset<T, ContentUpsertArgs<ExtArgs>>): Prisma.Prisma__ContentClient<runtime.Types.Result.GetResult<Prisma.$ContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
    * Count the number of Contents.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentCountArgs} args - Arguments to filter Contents to count.
+   * @param {ContentCountArgs} args - Arguments to filter Contents to count.
    * @example
    * // Count the number of Contents
    * const count = await prisma.content.count({
@@ -927,8 +1193,8 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   }
    * })
   **/
-  count<T extends contentCountArgs>(
-    args?: Prisma.Subset<T, contentCountArgs>,
+  count<T extends ContentCountArgs>(
+    args?: Prisma.Subset<T, ContentCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
@@ -967,7 +1233,7 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * Group by Content.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {contentGroupByArgs} args - Group by arguments.
+   * @param {ContentGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -982,14 +1248,14 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * 
   **/
   groupBy<
-    T extends contentGroupByArgs,
+    T extends ContentGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: contentGroupByArgs['orderBy'] }
-      : { orderBy?: contentGroupByArgs['orderBy'] },
+      ? { orderBy: ContentGroupByArgs['orderBy'] }
+      : { orderBy?: ContentGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -1038,21 +1304,23 @@ export interface contentDelegate<ExtArgs extends runtime.Types.Extensions.Intern
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, contentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, ContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the content model
+ * Fields of the Content model
  */
-readonly fields: contentFieldRefs;
+readonly fields: ContentFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for content.
+ * The delegate class that acts as a "Promise-like" for Content.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__contentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__ContentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  watchlists<T extends Prisma.Content$watchlistsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Content$watchlistsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WatchlistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.Content$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Content$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1079,388 +1347,476 @@ export interface Prisma__contentClient<T, Null = never, ExtArgs extends runtime.
 
 
 /**
- * Fields of the content model
+ * Fields of the Content model
  */
-export interface contentFieldRefs {
-  readonly id: Prisma.FieldRef<"content", 'String'>
-  readonly title: Prisma.FieldRef<"content", 'String'>
-  readonly type: Prisma.FieldRef<"content", 'contentType'>
-  readonly genre: Prisma.FieldRef<"content", 'contentGenre[]'>
-  readonly releaseYear: Prisma.FieldRef<"content", 'Int'>
-  readonly synopsis: Prisma.FieldRef<"content", 'String'>
-  readonly director: Prisma.FieldRef<"content", 'String'>
-  readonly streamingPlatform: Prisma.FieldRef<"content", 'streamingPlatform[]'>
-  readonly priceTier: Prisma.FieldRef<"content", 'PriceTier'>
-  readonly cast: Prisma.FieldRef<"content", 'String[]'>
-  readonly youtubeVideoId: Prisma.FieldRef<"content", 'String'>
-  readonly createdAt: Prisma.FieldRef<"content", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"content", 'DateTime'>
+export interface ContentFieldRefs {
+  readonly id: Prisma.FieldRef<"Content", 'String'>
+  readonly title: Prisma.FieldRef<"Content", 'String'>
+  readonly type: Prisma.FieldRef<"Content", 'contentType'>
+  readonly genre: Prisma.FieldRef<"Content", 'contentGenre[]'>
+  readonly releaseYear: Prisma.FieldRef<"Content", 'Int'>
+  readonly synopsis: Prisma.FieldRef<"Content", 'String'>
+  readonly director: Prisma.FieldRef<"Content", 'String'>
+  readonly streamingPlatform: Prisma.FieldRef<"Content", 'streamingPlatform[]'>
+  readonly priceTier: Prisma.FieldRef<"Content", 'PriceTier'>
+  readonly cast: Prisma.FieldRef<"Content", 'String[]'>
+  readonly youtubeVideoId: Prisma.FieldRef<"Content", 'String'>
+  readonly createdAt: Prisma.FieldRef<"Content", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Content", 'DateTime'>
 }
     
 
 // Custom InputTypes
 /**
- * content findUnique
+ * Content findUnique
  */
-export type contentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter, which content to fetch.
+   * Choose, which related nodes to fetch as well
    */
-  where: Prisma.contentWhereUniqueInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter, which Content to fetch.
+   */
+  where: Prisma.ContentWhereUniqueInput
 }
 
 /**
- * content findUniqueOrThrow
+ * Content findUniqueOrThrow
  */
-export type contentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter, which content to fetch.
+   * Choose, which related nodes to fetch as well
    */
-  where: Prisma.contentWhereUniqueInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter, which Content to fetch.
+   */
+  where: Prisma.ContentWhereUniqueInput
 }
 
 /**
- * content findFirst
+ * Content findFirst
  */
-export type contentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter, which content to fetch.
+   * Choose, which related nodes to fetch as well
    */
-  where?: Prisma.contentWhereInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter, which Content to fetch.
+   */
+  where?: Prisma.ContentWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of contents to fetch.
+   * Determine the order of Contents to fetch.
    */
-  orderBy?: Prisma.contentOrderByWithRelationInput | Prisma.contentOrderByWithRelationInput[]
+  orderBy?: Prisma.ContentOrderByWithRelationInput | Prisma.ContentOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for contents.
+   * Sets the position for searching for Contents.
    */
-  cursor?: Prisma.contentWhereUniqueInput
+  cursor?: Prisma.ContentWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` contents from the position of the cursor.
+   * Take `±n` Contents from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` contents.
+   * Skip the first `n` Contents.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of contents.
+   * Filter by unique combinations of Contents.
    */
   distinct?: Prisma.ContentScalarFieldEnum | Prisma.ContentScalarFieldEnum[]
 }
 
 /**
- * content findFirstOrThrow
+ * Content findFirstOrThrow
  */
-export type contentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter, which content to fetch.
+   * Choose, which related nodes to fetch as well
    */
-  where?: Prisma.contentWhereInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter, which Content to fetch.
+   */
+  where?: Prisma.ContentWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of contents to fetch.
+   * Determine the order of Contents to fetch.
    */
-  orderBy?: Prisma.contentOrderByWithRelationInput | Prisma.contentOrderByWithRelationInput[]
+  orderBy?: Prisma.ContentOrderByWithRelationInput | Prisma.ContentOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for contents.
+   * Sets the position for searching for Contents.
    */
-  cursor?: Prisma.contentWhereUniqueInput
+  cursor?: Prisma.ContentWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` contents from the position of the cursor.
+   * Take `±n` Contents from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` contents.
+   * Skip the first `n` Contents.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of contents.
+   * Filter by unique combinations of Contents.
    */
   distinct?: Prisma.ContentScalarFieldEnum | Prisma.ContentScalarFieldEnum[]
 }
 
 /**
- * content findMany
+ * Content findMany
  */
-export type contentFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter, which contents to fetch.
+   * Choose, which related nodes to fetch as well
    */
-  where?: Prisma.contentWhereInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter, which Contents to fetch.
+   */
+  where?: Prisma.ContentWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of contents to fetch.
+   * Determine the order of Contents to fetch.
    */
-  orderBy?: Prisma.contentOrderByWithRelationInput | Prisma.contentOrderByWithRelationInput[]
+  orderBy?: Prisma.ContentOrderByWithRelationInput | Prisma.ContentOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing contents.
+   * Sets the position for listing Contents.
    */
-  cursor?: Prisma.contentWhereUniqueInput
+  cursor?: Prisma.ContentWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` contents from the position of the cursor.
+   * Take `±n` Contents from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` contents.
+   * Skip the first `n` Contents.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of contents.
+   * Filter by unique combinations of Contents.
    */
   distinct?: Prisma.ContentScalarFieldEnum | Prisma.ContentScalarFieldEnum[]
 }
 
 /**
- * content create
+ * Content create
  */
-export type contentCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * The data needed to create a content.
+   * Choose, which related nodes to fetch as well
    */
-  data: Prisma.XOR<Prisma.contentCreateInput, Prisma.contentUncheckedCreateInput>
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * The data needed to create a Content.
+   */
+  data: Prisma.XOR<Prisma.ContentCreateInput, Prisma.ContentUncheckedCreateInput>
 }
 
 /**
- * content createMany
+ * Content createMany
  */
-export type contentCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many contents.
+   * The data used to create many Contents.
    */
-  data: Prisma.contentCreateManyInput | Prisma.contentCreateManyInput[]
+  data: Prisma.ContentCreateManyInput | Prisma.ContentCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * content createManyAndReturn
+ * Content createManyAndReturn
  */
-export type contentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ContentSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * The data used to create many contents.
+   * The data used to create many Contents.
    */
-  data: Prisma.contentCreateManyInput | Prisma.contentCreateManyInput[]
+  data: Prisma.ContentCreateManyInput | Prisma.ContentCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * content update
+ * Content update
  */
-export type contentUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * The data needed to update a content.
+   * Choose, which related nodes to fetch as well
    */
-  data: Prisma.XOR<Prisma.contentUpdateInput, Prisma.contentUncheckedUpdateInput>
+  include?: Prisma.ContentInclude<ExtArgs> | null
   /**
-   * Choose, which content to update.
+   * The data needed to update a Content.
    */
-  where: Prisma.contentWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContentUpdateInput, Prisma.ContentUncheckedUpdateInput>
+  /**
+   * Choose, which Content to update.
+   */
+  where: Prisma.ContentWhereUniqueInput
 }
 
 /**
- * content updateMany
+ * Content updateMany
  */
-export type contentUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update contents.
+   * The data used to update Contents.
    */
-  data: Prisma.XOR<Prisma.contentUpdateManyMutationInput, Prisma.contentUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.ContentUpdateManyMutationInput, Prisma.ContentUncheckedUpdateManyInput>
   /**
-   * Filter which contents to update
+   * Filter which Contents to update
    */
-  where?: Prisma.contentWhereInput
+  where?: Prisma.ContentWhereInput
   /**
-   * Limit how many contents to update.
+   * Limit how many Contents to update.
    */
   limit?: number
 }
 
 /**
- * content updateManyAndReturn
+ * Content updateManyAndReturn
  */
-export type contentUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.ContentSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * The data used to update contents.
+   * The data used to update Contents.
    */
-  data: Prisma.XOR<Prisma.contentUpdateManyMutationInput, Prisma.contentUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.ContentUpdateManyMutationInput, Prisma.ContentUncheckedUpdateManyInput>
   /**
-   * Filter which contents to update
+   * Filter which Contents to update
    */
-  where?: Prisma.contentWhereInput
+  where?: Prisma.ContentWhereInput
   /**
-   * Limit how many contents to update.
+   * Limit how many Contents to update.
    */
   limit?: number
 }
 
 /**
- * content upsert
+ * Content upsert
  */
-export type contentUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * The filter to search for the content to update in case it exists.
+   * Choose, which related nodes to fetch as well
    */
-  where: Prisma.contentWhereUniqueInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
   /**
-   * In case the content found by the `where` argument doesn't exist, create a new content with this data.
+   * The filter to search for the Content to update in case it exists.
    */
-  create: Prisma.XOR<Prisma.contentCreateInput, Prisma.contentUncheckedCreateInput>
+  where: Prisma.ContentWhereUniqueInput
   /**
-   * In case the content was found with the provided `where` argument, update it with this data.
+   * In case the Content found by the `where` argument doesn't exist, create a new Content with this data.
    */
-  update: Prisma.XOR<Prisma.contentUpdateInput, Prisma.contentUncheckedUpdateInput>
+  create: Prisma.XOR<Prisma.ContentCreateInput, Prisma.ContentUncheckedCreateInput>
+  /**
+   * In case the Content was found with the provided `where` argument, update it with this data.
+   */
+  update: Prisma.XOR<Prisma.ContentUpdateInput, Prisma.ContentUncheckedUpdateInput>
 }
 
 /**
- * content delete
+ * Content delete
  */
-export type contentDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Content
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.ContentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Content
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.ContentOmit<ExtArgs> | null
   /**
-   * Filter which content to delete.
+   * Choose, which related nodes to fetch as well
    */
-  where: Prisma.contentWhereUniqueInput
+  include?: Prisma.ContentInclude<ExtArgs> | null
+  /**
+   * Filter which Content to delete.
+   */
+  where: Prisma.ContentWhereUniqueInput
 }
 
 /**
- * content deleteMany
+ * Content deleteMany
  */
-export type contentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ContentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which contents to delete
+   * Filter which Contents to delete
    */
-  where?: Prisma.contentWhereInput
+  where?: Prisma.ContentWhereInput
   /**
-   * Limit how many contents to delete.
+   * Limit how many Contents to delete.
    */
   limit?: number
 }
 
 /**
- * content without action
+ * Content.watchlists
  */
-export type contentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Content$watchlistsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the content
+   * Select specific fields to fetch from the Watchlist
    */
-  select?: Prisma.contentSelect<ExtArgs> | null
+  select?: Prisma.WatchlistSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the content
+   * Omit specific fields from the Watchlist
    */
-  omit?: Prisma.contentOmit<ExtArgs> | null
+  omit?: Prisma.WatchlistOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WatchlistInclude<ExtArgs> | null
+  where?: Prisma.WatchlistWhereInput
+  orderBy?: Prisma.WatchlistOrderByWithRelationInput | Prisma.WatchlistOrderByWithRelationInput[]
+  cursor?: Prisma.WatchlistWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WatchlistScalarFieldEnum | Prisma.WatchlistScalarFieldEnum[]
+}
+
+/**
+ * Content.reviews
+ */
+export type Content$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
+}
+
+/**
+ * Content without action
+ */
+export type ContentDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Content
+   */
+  select?: Prisma.ContentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Content
+   */
+  omit?: Prisma.ContentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContentInclude<ExtArgs> | null
 }

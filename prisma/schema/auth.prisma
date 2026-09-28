@@ -1,17 +1,21 @@
 model User {
-  id            String     @id
+  id            String      @id
   name          String
   email         String
-  emailVerified Boolean    @default(false)
+  emailVerified Boolean     @default(false)
   image         String?
-  role          Role       @default(USER)
-  status        UserStatus @default(ACTIVE)
-  isDeleted     Boolean    @default(false)
+  role          Role        @default(USER)
+  status        UserStatus  @default(ACTIVE)
+  isDeleted     Boolean     @default(false)
   deletedAt     DateTime?
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   sessions      Session[]
   accounts      Account[]
+  watchlists    Watchlist[]
+  reviews       Review[]
+  likes         Like[]
+  comments      Comment[]
 
   @@unique([email])
   @@map("user")

@@ -38,3 +38,9 @@ enum PriceTier {
     FREE
     PREMIUM
 }
+
+enum ReviewStatus {
+    PENDING
+    PUBLISHED
+    REJECTED
+}

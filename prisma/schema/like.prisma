@@ -1,0 +1,11 @@
+model Like {
+    id        String   @id @default(uuid())
+    reviewId  String
+    userId    String
+    createdAt DateTime @default(now())
+
+    review Review @relation(fields: [reviewId], references: [id])
+    user   User   @relation(fields: [userId], references: [id])
+
+    @@unique([reviewId, userId])
+}

@@ -66,3 +66,12 @@ export const PriceTier = {
 } as const
 
 export type PriceTier = (typeof PriceTier)[keyof typeof PriceTier]
+
+
+export const ReviewStatus = {
+  PENDING: 'PENDING',
+  PUBLISHED: 'PUBLISHED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type ReviewStatus = (typeof ReviewStatus)[keyof typeof ReviewStatus]

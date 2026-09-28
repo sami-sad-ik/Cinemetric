@@ -1,0 +1,17 @@
+model Review {
+    id        String       @id @default(uuid())
+    userId    String
+    contentId String
+    rating    Int
+    body      String
+    tags      String[]
+    spoiler   Boolean      @default(false)
+    status    ReviewStatus @default(PENDING)
+    createdAt DateTime     @default(now())
+
+    user    User    @relation(fields: [userId], references: [id])
+    content Content @relation(fields: [contentId], references: [id])
+
+    comments Comment[]
+    likes    Like[]
+}
