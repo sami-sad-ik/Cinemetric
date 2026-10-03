@@ -2,6 +2,7 @@ import status from "http-status";
 import { UserStatus } from "../../../generated/prisma/schema/enums";
 import AppError from "../../errorHelpers/AppError";
 import { auth } from "../../lib/auth";
+import { tokenUtils } from "../../utils/token";
 
 interface IRegisterUserPayload {
   name: string;
@@ -22,18 +23,30 @@ const registerUser = async (payload: IRegisterUserPayload) => {
       password,
     },
   });
-  if (data.user.status === UserStatus.BLOCKED) {
-    throw new AppError(status.FORBIDDEN, "User is blocked");
-  }
-
-  if (data.user.status === UserStatus.DELETED) {
-    throw new AppError(status.NOT_FOUND, "User is deleted");
-  }
 
   if (!data.user) {
     throw new AppError(status.BAD_REQUEST, "User registration failed");
   }
-  return data;
+
+  const accessToken = tokenUtils.getAccessToken({
+    userId: data.user.id,
+    email: data.user.email,
+    role: data.user.role,
+    status: data.user.status,
+    emailVerified: data.user.emailVerified,
+    isDeleted: data.user.isDeleted,
+  });
+
+  const refreshToken = tokenUtils.getRefreshToken({
+    userId: data.user.id,
+    email: data.user.email,
+    role: data.user.role,
+    status: data.user.status,
+    emailVerified: data.user.emailVerified,
+    isDeleted: data.user.isDeleted,
+  });
+
+  return { ...data, accessToken, refreshToken };
 };
 
 const loginUser = async (payload: ILoginUserPayload) => {
@@ -44,7 +57,33 @@ const loginUser = async (payload: ILoginUserPayload) => {
       password,
     },
   });
-  return data;
+  if (data.user.status === UserStatus.BLOCKED) {
+    throw new AppError(status.FORBIDDEN, "User is blocked");
+  }
+
+  if (data.user.status === UserStatus.DELETED) {
+    throw new AppError(status.NOT_FOUND, "User is deleted");
+  }
+
+  const accessToken = tokenUtils.getAccessToken({
+    userId: data.user.id,
+    email: data.user.email,
+    role: data.user.role,
+    status: data.user.status,
+    emailVerified: data.user.emailVerified,
+    isDeleted: data.user.isDeleted,
+  });
+
+  const refreshToken = tokenUtils.getRefreshToken({
+    userId: data.user.id,
+    email: data.user.email,
+    role: data.user.role,
+    status: data.user.status,
+    emailVerified: data.user.emailVerified,
+    isDeleted: data.user.isDeleted,
+  });
+
+  return { ...data, accessToken, refreshToken };
 };
 
 export const authService = {
