@@ -1,3 +1,4 @@
+import status from "http-status";
 import { catchAsync } from "../../shared/catchAsync";
 import { sendResponse } from "../../shared/sendResponse";
 import { tokenUtils } from "../../utils/token";
@@ -14,7 +15,7 @@ const registerUser = catchAsync(async (req, res) => {
   tokenUtils.setRefreshToken(res, refreshToken as string);
 
   sendResponse(res, {
-    httpStatusCode: 201,
+    httpStatusCode: status.CREATED,
     success: true,
     message: "User registered successfully",
     data: {
@@ -37,7 +38,7 @@ const loginUser = catchAsync(async (req, res) => {
   tokenUtils.setRefreshToken(res, refreshToken as string);
 
   sendResponse(res, {
-    httpStatusCode: 200,
+    httpStatusCode: status.OK,
     success: true,
     message: "User logged in successfully",
     data: {
@@ -49,7 +50,18 @@ const loginUser = catchAsync(async (req, res) => {
   });
 });
 
+const getMe = catchAsync(async (req, res) => {
+  const user = req.user;
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "User retrieved successfully",
+    data: user,
+  });
+});
+
 export const authController = {
   registerUser,
   loginUser,
+  getMe,
 };

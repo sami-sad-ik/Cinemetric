@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Router } from "express";
 import { contentController } from "./content.controller";
 import { validateRequest } from "../../shared/validateRequest";

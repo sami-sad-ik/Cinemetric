@@ -3,6 +3,8 @@ import { UserStatus } from "../../../generated/prisma/schema/enums";
 import AppError from "../../errorHelpers/AppError";
 import { auth } from "../../lib/auth";
 import { tokenUtils } from "../../utils/token";
+import { IRequestUser } from "../../interfaces/requestUserInterface";
+import { prisma } from "../../lib/prisma";
 
 interface IRegisterUserPayload {
   name: string;
@@ -86,7 +88,20 @@ const loginUser = async (payload: ILoginUserPayload) => {
   return { ...data, accessToken, refreshToken };
 };
 
+const getMe = async (user: IRequestUser) => {
+  const isUserExists = await prisma.user.findUnique({
+    where: {
+      id: user.userId,
+    },
+  });
+  if (!isUserExists) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+  return isUserExists;
+};
+
 export const authService = {
   registerUser,
   loginUser,
+  getMe,
 };
