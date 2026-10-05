@@ -13,4 +13,6 @@ router.get(
   authController.getMe,
 );
 
+
+
 export const authRoutes = router;
