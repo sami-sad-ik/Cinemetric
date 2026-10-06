@@ -8,16 +8,11 @@ import { prisma } from "../../lib/prisma";
 import { jwtUtils } from "../../utils/jwt";
 import { envVars } from "../../../config/env";
 import { JwtPayload } from "jsonwebtoken";
-
-interface IRegisterUserPayload {
-  name: string;
-  email: string;
-  password: string;
-}
-interface ILoginUserPayload {
-  email: string;
-  password: string;
-}
+import {
+  IChangePasswordPayload,
+  ILoginUserPayload,
+  IRegisterUserPayload,
+} from "./auth.interface";
 
 const registerUser = async (payload: IRegisterUserPayload) => {
   const { name, email, password } = payload;
@@ -125,24 +120,91 @@ const getNewAccessToken = async (
   }
 
   const data = verifiedRefreshToken.data as JwtPayload;
-
+  console.log(data);
   const newAccessToken = tokenUtils.getAccessToken({
-    userId: data.user.id,
-    email: data.user.email,
-    role: data.user.role,
-    status: data.user.status,
-    emailVerified: data.user.emailVerified,
-    isDeleted: data.user.isDeleted,
+    userId: data.id,
+    email: data.email,
+    role: data.role,
+    status: data.status,
+    emailVerified: data.emailVerified,
+    isDeleted: data.isDeleted,
+  });
+
+  const newRefreshToken = tokenUtils.getRefreshToken({
+    userId: data.id,
+    email: data.email,
+    role: data.role,
+    status: data.status,
+    emailVerified: data.emailVerified,
+    isDeleted: data.isDeleted,
+  });
+
+  const { token } = await prisma.session.update({
+    where: {
+      token: sessionToken,
+    },
+    data: {
+      expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day
+      updatedAt: new Date(),
+    },
+  });
+  return {
+    accessToken: newAccessToken,
+    refreshToken: newRefreshToken,
+    sessionToken: token,
+  };
+};
+
+const changePassword = async (
+  payload: IChangePasswordPayload,
+  sessionToken: string,
+) => {
+  const session = await auth.api.getSession({
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+  if (!session) throw new AppError(status.UNAUTHORIZED, "Session not found");
+  const { currentPassword, newPassword } = payload;
+  const result = await auth.api.changePassword({
+    body: {
+      currentPassword,
+      newPassword,
+      revokeOtherSessions: true,
+    },
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+
+  const accessToken = tokenUtils.getAccessToken({
+    userId: session.user.id,
+    email: session.user.email,
+    role: session.user.role,
+    status: session.user.status,
+    emailVerified: session.user.emailVerified,
+    isDeleted: session.user.isDeleted,
   });
 
   const refreshToken = tokenUtils.getRefreshToken({
-    userId: data.user.id,
-    email: data.user.email,
-    role: data.user.role,
-    status: data.user.status,
-    emailVerified: data.user.emailVerified,
-    isDeleted: data.user.isDeleted,
+    userId: session.user.id,
+    email: session.user.email,
+    role: session.user.role,
+    status: session.user.status,
+    emailVerified: session.user.emailVerified,
+    isDeleted: session.user.isDeleted,
   });
+
+  return { ...result, accessToken, refreshToken };
+};
+
+const logoutUser = async (sessionToken: string) => {
+  const result = await auth.api.signOut({
+    headers: new Headers({
+      Authorization: `Bearer ${sessionToken}`,
+    }),
+  });
+  return result;
 };
 
 export const authService = {
@@ -150,4 +212,6 @@ export const authService = {
   loginUser,
   getMe,
   getNewAccessToken,
+  changePassword,
+  logoutUser,
 };

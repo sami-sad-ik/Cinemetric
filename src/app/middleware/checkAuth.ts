@@ -96,6 +96,8 @@ export const checkAuth =
           "Forbidden access : You do not have permission to access this resource",
         );
       }
+
+      next();
     } catch (error: any) {
       next(error);
     }
