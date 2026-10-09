@@ -33,7 +33,6 @@ const registerUser = async (payload: IRegisterUserPayload) => {
     email: data.user.email,
     role: data.user.role,
     status: data.user.status,
-    emailVerified: data.user.emailVerified,
     isDeleted: data.user.isDeleted,
   });
 
@@ -42,7 +41,6 @@ const registerUser = async (payload: IRegisterUserPayload) => {
     email: data.user.email,
     role: data.user.role,
     status: data.user.status,
-    emailVerified: data.user.emailVerified,
     isDeleted: data.user.isDeleted,
   });
 
@@ -70,7 +68,6 @@ const loginUser = async (payload: ILoginUserPayload) => {
     email: data.user.email,
     role: data.user.role,
     status: data.user.status,
-    emailVerified: data.user.emailVerified,
     isDeleted: data.user.isDeleted,
   });
 
@@ -79,7 +76,6 @@ const loginUser = async (payload: ILoginUserPayload) => {
     email: data.user.email,
     role: data.user.role,
     status: data.user.status,
-    emailVerified: data.user.emailVerified,
     isDeleted: data.user.isDeleted,
   });
 
@@ -126,7 +122,6 @@ const getNewAccessToken = async (
     email: data.email,
     role: data.role,
     status: data.status,
-    emailVerified: data.emailVerified,
     isDeleted: data.isDeleted,
   });
 
@@ -135,7 +130,6 @@ const getNewAccessToken = async (
     email: data.email,
     role: data.role,
     status: data.status,
-    emailVerified: data.emailVerified,
     isDeleted: data.isDeleted,
   });
 
@@ -182,7 +176,6 @@ const changePassword = async (
     email: session.user.email,
     role: session.user.role,
     status: session.user.status,
-    emailVerified: session.user.emailVerified,
     isDeleted: session.user.isDeleted,
   });
 
@@ -191,7 +184,6 @@ const changePassword = async (
     email: session.user.email,
     role: session.user.role,
     status: session.user.status,
-    emailVerified: session.user.emailVerified,
     isDeleted: session.user.isDeleted,
   });
 
@@ -207,6 +199,66 @@ const logoutUser = async (sessionToken: string) => {
   return result;
 };
 
+const forgotPassword = async (email: string) => {
+  const isUserExists = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+  if (!isUserExists) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+  if (
+    isUserExists.status === UserStatus.BLOCKED ||
+    isUserExists.status === UserStatus.DELETED
+  ) {
+    throw new AppError(
+      status.FORBIDDEN,
+      "User is not allowed to reset password",
+    );
+  }
+  await auth.api.requestPasswordResetEmailOTP({
+    body: { email },
+  });
+};
+
+const resetPassword = async (
+  email: string,
+  otp: string,
+  newPassword: string,
+) => {
+  const isUserExists = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+  if (!isUserExists) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+  if (
+    isUserExists.status === UserStatus.BLOCKED ||
+    isUserExists.status === UserStatus.DELETED
+  ) {
+    throw new AppError(
+      status.FORBIDDEN,
+      "User is not allowed to reset password",
+    );
+  }
+  await auth.api.resetPasswordEmailOTP({
+    body: {
+      email,
+      otp,
+      password: newPassword,
+    },
+  });
+
+  await prisma.session.deleteMany({
+    where: {
+      userId: isUserExists.id,
+    },
+  });
+};
+
 export const authService = {
   registerUser,
   loginUser,
@@ -214,4 +266,6 @@ export const authService = {
   getNewAccessToken,
   changePassword,
   logoutUser,
+  forgotPassword,
+  resetPassword,
 };

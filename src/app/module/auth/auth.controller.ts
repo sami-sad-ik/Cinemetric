@@ -145,6 +145,32 @@ const logoutUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const forgotPassword = catchAsync(async (req: Request, res: Response) => {
+  const { email } = req.body;
+  const result = await authService.forgotPassword(email);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Password reset OTP sent successfully",
+    data: result,
+  });
+});
+
+const resetPassword = catchAsync(async (req: Request, res: Response) => {
+  const { email, otp, password, newPassword } = req.body;
+  const resetPassword = password ?? newPassword;
+  if (typeof resetPassword !== "string") {
+    throw new AppError(status.BAD_REQUEST, "Password is required");
+  }
+  const result = await authService.resetPassword(email, otp, resetPassword);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Password reset successfully",
+    data: result,
+  });
+});
+
 export const authController = {
   registerUser,
   loginUser,
@@ -152,4 +178,6 @@ export const authController = {
   getNewAccessToken,
   changePassword,
   logoutUser,
+  forgotPassword,
+  resetPassword,
 };
