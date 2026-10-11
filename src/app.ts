@@ -5,8 +5,12 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "./app/lib/auth";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
+import path from "path";
 
 const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", path.resolve(process.cwd(), "src", "app", "template"));
 
 app.use("/api/auth", toNodeHandler(auth));
 

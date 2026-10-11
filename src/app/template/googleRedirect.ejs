@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google login</title>
+  </head>
+  <body>
+    <h2>Redirecting to google...</h2>
+  </body>
+  <script>
+    (async () => {
+      try {
+        const response = await fetch(
+          "<%= betterAuthUrl %>/api/auth/sign-in/social",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              provider: "google",
+              callbackUrl: "<%= callbackUrl %>",
+            }),
+          },
+        );
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          document.body.innerHTML = `<h2>Redirecting to google failed</h2><p>${data?.message}</p>`;
+        }
+      } catch (error) {
+        document.body.innerHTML = `<h2>Redirecting to google failed</h2><p>${error.message}</p>`;
+      }
+    })();
+  </script>
+</html>

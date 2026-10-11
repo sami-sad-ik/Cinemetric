@@ -12,6 +12,7 @@ import {
   IChangePasswordPayload,
   ILoginUserPayload,
   IRegisterUserPayload,
+  ISession,
 } from "./auth.interface";
 
 const registerUser = async (payload: IRegisterUserPayload) => {
@@ -259,6 +260,33 @@ const resetPassword = async (
   });
 };
 
+const googleLoginSuccess = async (session: ISession) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: session.user.id,
+    },
+  });
+  if (!user) {
+    throw new AppError(status.NOT_FOUND, "User not found");
+  }
+  const accessToken = tokenUtils.getAccessToken({
+    userId: user.id,
+    email: user.email,
+    role: user.role,
+    status: user.status,
+    isDeleted: user.isDeleted,
+  });
+
+  const refreshToken = tokenUtils.getRefreshToken({
+    userId: user.id,
+    email: user.email,
+    role: user.role,
+    status: user.status,
+    isDeleted: user.isDeleted,
+  });
+  return { accessToken, refreshToken };
+};
+
 export const authService = {
   registerUser,
   loginUser,
@@ -268,4 +296,5 @@ export const authService = {
   logoutUser,
   forgotPassword,
   resetPassword,
+  googleLoginSuccess,
 };
