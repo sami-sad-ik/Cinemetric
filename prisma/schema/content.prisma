@@ -6,6 +6,7 @@ model Content {
     genre             contentGenre[]
     releaseYear       Int
     synopsis          String              @db.VarChar(500)
+    thumbnailLink     String              @db.VarChar(500)
     director          String              @db.VarChar(100)
     streamingPlatform streamingPlatform[]
     priceTier         PriceTier           @default(FREE)

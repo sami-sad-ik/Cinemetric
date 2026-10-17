@@ -7,8 +7,9 @@ import z from "zod";
 import { TErrorResponse, TErrorSources } from "../interfaces/error.interface";
 import { handleZodError } from "../errorHelpers/handleZodError";
 import AppError from "../errorHelpers/AppError";
+import { deleteFileFromCloudinary } from "../../config/cloudinary.config";
 
-export const globalErrorHandler = (
+export const globalErrorHandler = async (
   err: any,
   req: Request,
   res: Response,
@@ -23,6 +24,13 @@ export const globalErrorHandler = (
   let message: string = err.message || "Internal Server Error";
   let stack: string | undefined = undefined;
 
+  if (req.file) {
+    await deleteFileFromCloudinary(req.file.path);
+  }
+  if (req.files && Array.isArray(req.files) && req.files.length > 0) {
+    const fileUrls = req.files.map((file) => file.path);
+    await Promise.all(fileUrls.map((url) => deleteFileFromCloudinary(url)));
+  }
   if (err instanceof z.ZodError) {
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError.statusCode as number;

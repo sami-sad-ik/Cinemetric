@@ -3,10 +3,11 @@ import z from "zod";
 
 export const validateRequest = (zodSchema: z.ZodObject) => {
   return (req: Request, res: Response, next: NextFunction) => {
+    req.body = JSON.parse(req.body.data);
     const parsedResult = zodSchema.safeParse(req.body);
     if (!parsedResult.success) {
       console.log(parsedResult.error);
-      next(parsedResult.error);
+      return next(parsedResult.error);
     }
     //sanitizing the data
     req.body = parsedResult.data;

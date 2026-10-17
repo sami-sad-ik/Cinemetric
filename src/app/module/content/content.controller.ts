@@ -4,8 +4,8 @@ import status from "http-status";
 import { catchAsync } from "../../shared/catchAsync";
 import { sendResponse } from "../../shared/sendResponse";
 
-const createContent = catchAsync(async (req: Request, res: Response) => {
-  const payload = req.body;
+const createContent = async (req: Request, res: Response) => {
+  const payload = { ...req.body, thumbnailLink: req.file?.path };
   const result = await contentService.createContent(payload);
   sendResponse(res, {
     httpStatusCode: status.CREATED,
@@ -13,7 +13,7 @@ const createContent = catchAsync(async (req: Request, res: Response) => {
     message: "Content created successfully",
     data: result,
   });
-});
+};
 
 const getAllContent = catchAsync(async (req: Request, res: Response) => {
   const result = await contentService.getAllContent();

@@ -5,13 +5,14 @@ import { createContentZodSchema } from "./content.validation";
 
 import { checkAuth } from "../../middleware/checkAuth";
 import { Role } from "../../../generated/prisma/schema/enums";
+import { multerUpload } from "../../../config/multer.config";
 
 const router = Router();
 
 router.post(
   "/",
-
-  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  // checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  multerUpload.single("file"),
   validateRequest(createContentZodSchema),
   contentController.createContent,
 );

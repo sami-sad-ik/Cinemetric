@@ -22,6 +22,7 @@ export const createContentZodSchema = z.object({
     .nonnegative()
     .max(new Date().getFullYear(), `releaseYear cannot be in the future`),
   synopsis: z.string().max(500),
+  // thumbnailLink: z.string().max(500),
   director: z
     .string()
     .max(

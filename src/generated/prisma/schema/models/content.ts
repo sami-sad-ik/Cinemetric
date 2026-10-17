@@ -40,6 +40,7 @@ export type ContentMinAggregateOutputType = {
   type: $Enums.contentType | null
   releaseYear: number | null
   synopsis: string | null
+  thumbnailLink: string | null
   director: string | null
   priceTier: $Enums.PriceTier | null
   youtubeVideoId: string | null
@@ -53,6 +54,7 @@ export type ContentMaxAggregateOutputType = {
   type: $Enums.contentType | null
   releaseYear: number | null
   synopsis: string | null
+  thumbnailLink: string | null
   director: string | null
   priceTier: $Enums.PriceTier | null
   youtubeVideoId: string | null
@@ -67,6 +69,7 @@ export type ContentCountAggregateOutputType = {
   genre: number
   releaseYear: number
   synopsis: number
+  thumbnailLink: number
   director: number
   streamingPlatform: number
   priceTier: number
@@ -92,6 +95,7 @@ export type ContentMinAggregateInputType = {
   type?: true
   releaseYear?: true
   synopsis?: true
+  thumbnailLink?: true
   director?: true
   priceTier?: true
   youtubeVideoId?: true
@@ -105,6 +109,7 @@ export type ContentMaxAggregateInputType = {
   type?: true
   releaseYear?: true
   synopsis?: true
+  thumbnailLink?: true
   director?: true
   priceTier?: true
   youtubeVideoId?: true
@@ -119,6 +124,7 @@ export type ContentCountAggregateInputType = {
   genre?: true
   releaseYear?: true
   synopsis?: true
+  thumbnailLink?: true
   director?: true
   streamingPlatform?: true
   priceTier?: true
@@ -222,6 +228,7 @@ export type ContentGroupByOutputType = {
   genre: $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform: $Enums.streamingPlatform[]
   priceTier: $Enums.PriceTier
@@ -261,6 +268,7 @@ export type ContentWhereInput = {
   genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
   releaseYear?: Prisma.IntFilter<"Content"> | number
   synopsis?: Prisma.StringFilter<"Content"> | string
+  thumbnailLink?: Prisma.StringFilter<"Content"> | string
   director?: Prisma.StringFilter<"Content"> | string
   streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
   priceTier?: Prisma.EnumPriceTierFilter<"Content"> | $Enums.PriceTier
@@ -279,6 +287,7 @@ export type ContentOrderByWithRelationInput = {
   genre?: Prisma.SortOrder
   releaseYear?: Prisma.SortOrder
   synopsis?: Prisma.SortOrder
+  thumbnailLink?: Prisma.SortOrder
   director?: Prisma.SortOrder
   streamingPlatform?: Prisma.SortOrder
   priceTier?: Prisma.SortOrder
@@ -300,6 +309,7 @@ export type ContentWhereUniqueInput = Prisma.AtLeast<{
   genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
   releaseYear?: Prisma.IntFilter<"Content"> | number
   synopsis?: Prisma.StringFilter<"Content"> | string
+  thumbnailLink?: Prisma.StringFilter<"Content"> | string
   director?: Prisma.StringFilter<"Content"> | string
   streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
   priceTier?: Prisma.EnumPriceTierFilter<"Content"> | $Enums.PriceTier
@@ -318,6 +328,7 @@ export type ContentOrderByWithAggregationInput = {
   genre?: Prisma.SortOrder
   releaseYear?: Prisma.SortOrder
   synopsis?: Prisma.SortOrder
+  thumbnailLink?: Prisma.SortOrder
   director?: Prisma.SortOrder
   streamingPlatform?: Prisma.SortOrder
   priceTier?: Prisma.SortOrder
@@ -342,6 +353,7 @@ export type ContentScalarWhereWithAggregatesInput = {
   genre?: Prisma.EnumcontentGenreNullableListFilter<"Content">
   releaseYear?: Prisma.IntWithAggregatesFilter<"Content"> | number
   synopsis?: Prisma.StringWithAggregatesFilter<"Content"> | string
+  thumbnailLink?: Prisma.StringWithAggregatesFilter<"Content"> | string
   director?: Prisma.StringWithAggregatesFilter<"Content"> | string
   streamingPlatform?: Prisma.EnumstreamingPlatformNullableListFilter<"Content">
   priceTier?: Prisma.EnumPriceTierWithAggregatesFilter<"Content"> | $Enums.PriceTier
@@ -358,6 +370,7 @@ export type ContentCreateInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -376,6 +389,7 @@ export type ContentUncheckedCreateInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -394,6 +408,7 @@ export type ContentUpdateInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -412,6 +427,7 @@ export type ContentUncheckedUpdateInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -430,6 +446,7 @@ export type ContentCreateManyInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -446,6 +463,7 @@ export type ContentUpdateManyMutationInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -462,6 +480,7 @@ export type ContentUncheckedUpdateManyInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -502,6 +521,7 @@ export type ContentCountOrderByAggregateInput = {
   genre?: Prisma.SortOrder
   releaseYear?: Prisma.SortOrder
   synopsis?: Prisma.SortOrder
+  thumbnailLink?: Prisma.SortOrder
   director?: Prisma.SortOrder
   streamingPlatform?: Prisma.SortOrder
   priceTier?: Prisma.SortOrder
@@ -521,6 +541,7 @@ export type ContentMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   releaseYear?: Prisma.SortOrder
   synopsis?: Prisma.SortOrder
+  thumbnailLink?: Prisma.SortOrder
   director?: Prisma.SortOrder
   priceTier?: Prisma.SortOrder
   youtubeVideoId?: Prisma.SortOrder
@@ -534,6 +555,7 @@ export type ContentMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   releaseYear?: Prisma.SortOrder
   synopsis?: Prisma.SortOrder
+  thumbnailLink?: Prisma.SortOrder
   director?: Prisma.SortOrder
   priceTier?: Prisma.SortOrder
   youtubeVideoId?: Prisma.SortOrder
@@ -628,6 +650,7 @@ export type ContentCreateWithoutReviewsInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -645,6 +668,7 @@ export type ContentUncheckedCreateWithoutReviewsInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -678,6 +702,7 @@ export type ContentUpdateWithoutReviewsInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -695,6 +720,7 @@ export type ContentUncheckedUpdateWithoutReviewsInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -712,6 +738,7 @@ export type ContentCreateWithoutWatchlistsInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -729,6 +756,7 @@ export type ContentUncheckedCreateWithoutWatchlistsInput = {
   genre?: Prisma.ContentCreategenreInput | $Enums.contentGenre[]
   releaseYear: number
   synopsis: string
+  thumbnailLink: string
   director: string
   streamingPlatform?: Prisma.ContentCreatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: $Enums.PriceTier
@@ -762,6 +790,7 @@ export type ContentUpdateWithoutWatchlistsInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -779,6 +808,7 @@ export type ContentUncheckedUpdateWithoutWatchlistsInput = {
   genre?: Prisma.ContentUpdategenreInput | $Enums.contentGenre[]
   releaseYear?: Prisma.IntFieldUpdateOperationsInput | number
   synopsis?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnailLink?: Prisma.StringFieldUpdateOperationsInput | string
   director?: Prisma.StringFieldUpdateOperationsInput | string
   streamingPlatform?: Prisma.ContentUpdatestreamingPlatformInput | $Enums.streamingPlatform[]
   priceTier?: Prisma.EnumPriceTierFieldUpdateOperationsInput | $Enums.PriceTier
@@ -836,6 +866,7 @@ export type ContentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   genre?: boolean
   releaseYear?: boolean
   synopsis?: boolean
+  thumbnailLink?: boolean
   director?: boolean
   streamingPlatform?: boolean
   priceTier?: boolean
@@ -855,6 +886,7 @@ export type ContentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   genre?: boolean
   releaseYear?: boolean
   synopsis?: boolean
+  thumbnailLink?: boolean
   director?: boolean
   streamingPlatform?: boolean
   priceTier?: boolean
@@ -871,6 +903,7 @@ export type ContentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   genre?: boolean
   releaseYear?: boolean
   synopsis?: boolean
+  thumbnailLink?: boolean
   director?: boolean
   streamingPlatform?: boolean
   priceTier?: boolean
@@ -887,6 +920,7 @@ export type ContentSelectScalar = {
   genre?: boolean
   releaseYear?: boolean
   synopsis?: boolean
+  thumbnailLink?: boolean
   director?: boolean
   streamingPlatform?: boolean
   priceTier?: boolean
@@ -896,7 +930,7 @@ export type ContentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "genre" | "releaseYear" | "synopsis" | "director" | "streamingPlatform" | "priceTier" | "cast" | "youtubeVideoId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
+export type ContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "type" | "genre" | "releaseYear" | "synopsis" | "thumbnailLink" | "director" | "streamingPlatform" | "priceTier" | "cast" | "youtubeVideoId" | "createdAt" | "updatedAt", ExtArgs["result"]["content"]>
 export type ContentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   watchlists?: boolean | Prisma.Content$watchlistsArgs<ExtArgs>
   reviews?: boolean | Prisma.Content$reviewsArgs<ExtArgs>
@@ -918,6 +952,7 @@ export type $ContentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     genre: $Enums.contentGenre[]
     releaseYear: number
     synopsis: string
+    thumbnailLink: string
     director: string
     streamingPlatform: $Enums.streamingPlatform[]
     priceTier: $Enums.PriceTier
@@ -1356,6 +1391,7 @@ export interface ContentFieldRefs {
   readonly genre: Prisma.FieldRef<"Content", 'contentGenre[]'>
   readonly releaseYear: Prisma.FieldRef<"Content", 'Int'>
   readonly synopsis: Prisma.FieldRef<"Content", 'String'>
+  readonly thumbnailLink: Prisma.FieldRef<"Content", 'String'>
   readonly director: Prisma.FieldRef<"Content", 'String'>
   readonly streamingPlatform: Prisma.FieldRef<"Content", 'streamingPlatform[]'>
   readonly priceTier: Prisma.FieldRef<"Content", 'PriceTier'>

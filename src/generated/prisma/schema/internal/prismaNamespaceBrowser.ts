@@ -159,6 +159,7 @@ export const ContentScalarFieldEnum = {
   genre: 'genre',
   releaseYear: 'releaseYear',
   synopsis: 'synopsis',
+  thumbnailLink: 'thumbnailLink',
   director: 'director',
   streamingPlatform: 'streamingPlatform',
   priceTier: 'priceTier',
