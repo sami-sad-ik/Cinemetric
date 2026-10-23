@@ -1,7 +1,7 @@
-import { string } from "zod";
 import {
   IQueryConfig,
   IQueryParams,
+  IQueryResult,
   PrismaCountArgs,
   PrismaFindManyArgs,
   PrismaModelDelegate,
@@ -265,13 +265,13 @@ export class QueryBuilder<
 
   dynamicInclude(
     includeConfig: Record<string, unknown>,
-    defaultInclude: string[],
+    defaultInclude?: string[],
   ): this {
     if (this.selectFields) {
       return this;
     }
     const result: Record<string, unknown> = {};
-    defaultInclude.forEach((field) => {
+    defaultInclude?.forEach((field) => {
       if (includeConfig[field]) {
         result[field] = includeConfig[field];
       }
@@ -307,6 +307,37 @@ export class QueryBuilder<
     );
 
     return this;
+  }
+
+  async execute(): Promise<IQueryResult<T>> {
+    const [total, data] = await Promise.all([
+      this.model.count(
+        this.queryCount as Parameters<typeof this.model.count>[0],
+      ),
+      this.model.findMany(
+        this.query as Parameters<typeof this.model.findMany>[0],
+      ),
+    ]);
+    const totalPages = Math.ceil(total / this.limit);
+    return {
+      data: data as T[],
+      meta: {
+        page: this.page,
+        limit: this.limit,
+        total,
+        totalPages,
+      },
+    };
+  }
+
+  async count(): Promise<number> {
+    return await this.model.count(
+      this.queryCount as Parameters<typeof this.model.count>[0],
+    );
+  }
+
+  getQuery(): PrismaFindManyArgs {
+    return this.query;
   }
 
   private parseFilterValue(value: unknown): unknown {
@@ -392,6 +423,8 @@ export class QueryBuilder<
         } else {
           result[key] = source[key];
         }
+      } else {
+        result[key] = source[key];
       }
     }
     return result;

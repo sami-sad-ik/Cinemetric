@@ -3,6 +3,7 @@ import { contentService } from "./content.service";
 import status from "http-status";
 import { catchAsync } from "../../shared/catchAsync";
 import { sendResponse } from "../../shared/sendResponse";
+import { IQueryParams } from "../../interfaces/query.interface";
 
 const createContent = async (req: Request, res: Response) => {
   const payload = { ...req.body, thumbnailLink: req.file?.path };
@@ -16,7 +17,8 @@ const createContent = async (req: Request, res: Response) => {
 };
 
 const getAllContent = catchAsync(async (req: Request, res: Response) => {
-  const result = await contentService.getAllContent();
+  const query = req.query;
+  const result = await contentService.getAllContent(query as IQueryParams);
   sendResponse(res, {
     httpStatusCode: status.OK,
     success: true,
