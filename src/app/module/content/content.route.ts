@@ -11,7 +11,7 @@ const router = Router();
 
 router.post(
   "/",
-  // checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
+  checkAuth(Role.ADMIN, Role.SUPER_ADMIN),
   multerUpload.single("file"),
   validateRequest(createContentZodSchema),
   contentController.createContent,

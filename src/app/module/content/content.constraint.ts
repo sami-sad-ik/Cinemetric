@@ -4,12 +4,6 @@ export const contentSearchableFields = [
   "title",
   "synopsis",
   "director",
-  "cast",
-  "genre",
-  "streamingPlatform",
-  "priceTier",
-  "type",
-  "releaseYear",
   "youtubeVideoId",
   "thumbnailLink",
 ];

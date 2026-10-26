@@ -31,8 +31,6 @@ export class QueryBuilder<
   ) {
     this.query = {
       where: {},
-      include: {},
-      select: {},
       orderBy: {},
       skip: 0,
       take: 10,
@@ -69,8 +67,10 @@ export class QueryBuilder<
               };
               return {
                 [relation]: {
-                  [nestedRelation]: {
-                    [nestedField]: stringFilter,
+                  some: {
+                    [nestedRelation]: {
+                      [nestedField]: stringFilter,
+                    },
                   },
                 },
               };
@@ -104,7 +104,7 @@ export class QueryBuilder<
       "sortBy",
       "sortOrder",
       "fields",
-      "includes",
+      "include",
     ];
     const filterParams: Record<string, unknown> = {};
 
@@ -125,7 +125,6 @@ export class QueryBuilder<
         !filterableFields.length ||
         filterableFields?.includes(key);
 
-      if (!isAllowedFields) return;
       if (key.includes(".")) {
         const parts = key.split(".");
 
@@ -136,35 +135,21 @@ export class QueryBuilder<
             countQueryWhere[relation] = {};
           }
 
-          queryWhere[relation] = {
-            [nestedField]: this.parseFilterValue(value),
-          };
-          countQueryWhere[relation] = {
-            [nestedField]: this.parseFilterValue(value),
-          };
-          return;
-        } else if (parts.length === 3) {
-          const [relation, nestedRelation, nestedField] = parts;
-          if (!queryWhere[relation]) {
-            queryWhere[relation] = {};
-            countQueryWhere[relation] = {};
-          }
+          const queryRelation = queryWhere[relation] as Record<string, unknown>;
+          const countRelation = countQueryWhere[relation] as Record<
+            string,
+            unknown
+          >;
 
-          queryWhere[relation] = {
-            [nestedRelation]: {
-              [nestedField]: this.parseFilterValue(value),
-            },
-          };
-          countQueryWhere[relation] = {
-            [nestedRelation]: {
-              [nestedField]: this.parseFilterValue(value),
-            },
-          };
+          queryRelation[nestedField] = this.parseFilterValue(value);
+          countRelation[nestedField] = this.parseFilterValue(value);
           return;
         }
-        return;
       }
 
+      if (!isAllowedFields) return;
+
+      //range filtering
       if (
         typeof value === "object" &&
         value !== null &&
@@ -176,10 +161,9 @@ export class QueryBuilder<
         countQueryWhere[key] = this.parseRangeFilter(
           value as Record<string, unknown>,
         );
-      } else {
-        queryWhere[key] = this.parseFilterValue(value);
-        countQueryWhere[key] = this.parseFilterValue(value);
       }
+      queryWhere[key] = this.parseFilterValue(value);
+      countQueryWhere[key] = this.parseFilterValue(value);
     });
 
     return this;
@@ -253,11 +237,11 @@ export class QueryBuilder<
   }
 
   include(relation: TInclude): this {
-    if (this.selectFields) {
+    if (Object.keys(this.selectFields).length > 0) {
       return this;
     }
     this.query.include = {
-      ...(this.query.include as Record<string, unknown>),
+      ...(this.query.include as Record<string, unknown> | undefined),
       ...(relation as Record<string, unknown>),
     };
     return this;
@@ -267,7 +251,7 @@ export class QueryBuilder<
     includeConfig: Record<string, unknown>,
     defaultInclude?: string[],
   ): this {
-    if (this.selectFields) {
+    if (Object.keys(this.selectFields).length > 0) {
       return this;
     }
     const result: Record<string, unknown> = {};
@@ -276,7 +260,7 @@ export class QueryBuilder<
         result[field] = includeConfig[field];
       }
     });
-    const includeParam = this.queryParams.includes as string | undefined;
+    const includeParam = this.queryParams.include as string | undefined;
 
     if (includeParam && typeof includeParam === "string") {
       const requestedInclude = includeParam.split(",").map((rel) => rel.trim());
@@ -362,7 +346,7 @@ export class QueryBuilder<
     | Record<string, string | number | (string | number)[]> {
     const rangeQuery: Record<string, string | number | (string | number)[]> =
       {};
-
+    // ?{ gte: "500", lte: "2000" }
     Object.keys(value).forEach((operator) => {
       const operatorValue = value[operator];
       const parsedValue =
