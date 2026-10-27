@@ -5,3 +5,10 @@ export interface CreateReviewPayload {
   tags: string[];
   spoiler?: boolean;
 }
+
+export interface UpdateReviewPayload {
+  rating?: number;
+  body?: string;
+  tags?: string[];
+  spoiler?: boolean;
+}
