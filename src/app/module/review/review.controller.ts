@@ -38,7 +38,7 @@ const getMyReviews = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     httpStatusCode: status.OK,
     success: true,
-    message: "Reviews fetched successfully",
+    message: "User's reviews fetched successfully",
     data: result,
   });
 });

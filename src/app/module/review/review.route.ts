@@ -16,8 +16,8 @@ router.post(
   validateRequest(createReviewZodSchema),
   reviewController.createReview,
 );
-router.get("/:id", reviewController.getPublishedReviewsByContent);
 router.get("/me", checkAuth(Role.USER), reviewController.getMyReviews);
+router.get("/:id", reviewController.getPublishedReviewsByContent);
 router.put(
   "/:id",
   checkAuth(Role.USER),

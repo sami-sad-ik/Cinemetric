@@ -1,5 +1,5 @@
 model Content {
-    id String @id @default(uuid(7))
+    id String @id @default(uuid())
 
     title             String              @db.VarChar(100)
     type              contentType

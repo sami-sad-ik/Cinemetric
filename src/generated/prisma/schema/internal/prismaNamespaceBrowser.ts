@@ -146,7 +146,8 @@ export const CommentScalarFieldEnum = {
   userId: 'userId',
   parentCommentId: 'parentCommentId',
   body: 'body',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -191,7 +192,8 @@ export const ReviewScalarFieldEnum = {
   tags: 'tags',
   spoiler: 'spoiler',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]

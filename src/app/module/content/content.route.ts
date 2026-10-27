@@ -2,7 +2,6 @@ import { Router } from "express";
 import { contentController } from "./content.controller";
 import { validateRequest } from "../../shared/validateRequest";
 import { createContentZodSchema } from "./content.validation";
-
 import { checkAuth } from "../../middleware/checkAuth";
 import { Role } from "../../../generated/prisma/schema/enums";
 import { multerUpload } from "../../../config/multer.config";

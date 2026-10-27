@@ -28,7 +28,7 @@ const setAccessToken = (res: Response, token: string) => {
     secure: envVars.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24, // 1 day in seconds
+    maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
   });
 };
 
@@ -38,7 +38,7 @@ const setRefreshToken = (res: Response, token: string) => {
     secure: envVars.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
-    maxAge: 60 * 60 * 24 * 7, // 7  days in seconds
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days in milliseconds
   });
 };
 
@@ -48,7 +48,7 @@ const setBetterAuthSessionToken = (res: Response, token: string) => {
     secure: envVars.NODE_ENV === "production",
     sameSite: envVars.NODE_ENV === "production" ? "none" : "lax",
     path: "/",
-    maxAge: 60 * 60 * 24, // 1  days in seconds
+    maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds
   });
 };
 

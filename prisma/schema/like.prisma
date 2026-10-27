@@ -4,8 +4,8 @@ model Like {
     userId    String
     createdAt DateTime @default(now())
 
-    review Review @relation(fields: [reviewId], references: [id])
-    user   User   @relation(fields: [userId], references: [id])
+    review Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([reviewId, userId])
 }

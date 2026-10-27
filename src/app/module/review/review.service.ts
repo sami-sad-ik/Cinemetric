@@ -49,7 +49,7 @@ const getPublishedReviewsByContent = async (contentId: string) => {
 
 const getMyReviews = async (userId: string) => {
   const reviewData = await prisma.review.findMany({
-    where: { userId: userId },
+    where: { userId },
   });
   return reviewData;
 };
@@ -113,10 +113,12 @@ const approveReview = async (reviewId: string) => {
     where: { id: reviewId },
   });
   if (!reviewData) throw new AppError(status.NOT_FOUND, "Review not found");
-  if (reviewData.status === ReviewStatus.PUBLISHED)
-    throw new AppError(status.BAD_REQUEST, "Review already published");
-  if (reviewData.status === ReviewStatus.REJECTED)
-    throw new AppError(status.BAD_REQUEST, "Review already rejected");
+  if (reviewData.status !== ReviewStatus.PENDING)
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Only pending review can be approved",
+    );
+
   const approvedReview = await prisma.review.update({
     where: { id: reviewId },
     data: { status: ReviewStatus.PUBLISHED },
@@ -129,10 +131,11 @@ const rejectReview = async (reviewId: string) => {
     where: { id: reviewId },
   });
   if (!reviewData) throw new AppError(status.NOT_FOUND, "Review not found");
-  if (reviewData.status === ReviewStatus.REJECTED)
-    throw new AppError(status.BAD_REQUEST, "Review already rejected");
-  if (reviewData.status === ReviewStatus.PUBLISHED)
-    throw new AppError(status.BAD_REQUEST, "Review already published");
+  if (reviewData.status !== ReviewStatus.PENDING)
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Only pending review can be rejected",
+    );
   const rejectedReview = await prisma.review.update({
     where: { id: reviewId },
     data: { status: ReviewStatus.REJECTED },
@@ -145,10 +148,11 @@ const unpublishReview = async (reviewId: string) => {
     where: { id: reviewId },
   });
   if (!reviewData) throw new AppError(status.NOT_FOUND, "Review not found");
-  if (reviewData.status === ReviewStatus.PENDING)
-    throw new AppError(status.BAD_REQUEST, "Review is not yet published");
-  if (reviewData.status === ReviewStatus.REJECTED)
-    throw new AppError(status.BAD_REQUEST, "Review already rejected");
+  if (reviewData.status !== ReviewStatus.PUBLISHED)
+    throw new AppError(
+      status.BAD_REQUEST,
+      "Only published review can be unpublished",
+    );
   const unpublishedReview = await prisma.review.update({
     where: { id: reviewId },
     data: { status: ReviewStatus.PENDING },
