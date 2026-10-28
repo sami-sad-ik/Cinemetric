@@ -8,4 +8,5 @@ dist
 .agents/skills/
 .claude/skills/
 .windsurf/skills/
+.continue/mcpServers/
 skills-lock.json
