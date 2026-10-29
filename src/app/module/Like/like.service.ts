@@ -44,7 +44,15 @@ const getLikeCountByReviewId = async (reviewId: string) => {
   });
 };
 
+const hasUserLiked = async (userId: string, reviewId: string) => {
+  const existingLike = await prisma.like.findUnique({
+    where: { reviewId_userId: { reviewId, userId } },
+  });
+  return { liked: !!existingLike };
+};
+
 export const likeService = {
   toggleLike,
   getLikeCountByReviewId,
+  hasUserLiked,
 };

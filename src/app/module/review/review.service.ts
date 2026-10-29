@@ -9,6 +9,7 @@ import {
   reviewFilterableFields,
   reviewSearchableFields,
 } from "./review.constraint";
+import { Prisma, Review } from "../../../generated/prisma/schema/client";
 
 const createReview = async (payload: CreateReviewPayload, userId: string) => {
   const userData = await prisma.user.findUnique({
@@ -92,7 +93,11 @@ const deleteMyReview = async (reviewId: string, userId: string) => {
 
 // Admin
 const getPendingReviews = async (query: IQueryParams) => {
-  const queryBuilder = new QueryBuilder(prisma.review, query, {
+  const queryBuilder = new QueryBuilder<
+    Review,
+    Prisma.ReviewWhereInput,
+    Prisma.ReviewInclude
+  >(prisma.review, query, {
     searchableFields: reviewSearchableFields,
     filterableFields: reviewFilterableFields,
   });
