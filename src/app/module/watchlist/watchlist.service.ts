@@ -32,6 +32,12 @@ const removeFromWatchlist = async (contentId: string, userId: string) => {
   if (!contentData) {
     throw new AppError(status.NOT_FOUND, "Content not found");
   }
+  const watchlistEntry = await prisma.watchlist.findUnique({
+    where: { unique_user_content: { contentId, userId } },
+  });
+  if (!watchlistEntry) {
+    throw new AppError(status.NOT_FOUND, "Content not found in watchlist");
+  }
   const result = await prisma.watchlist.delete({
     where: { unique_user_content: { contentId, userId } },
   });
@@ -59,8 +65,16 @@ const getMyWatchlist = async (userId: string, query: IQueryParams) => {
   return result;
 };
 
+const isInWatchlist = async (contentId: string, userId: string) => {
+  const listed = await prisma.watchlist.findUnique({
+    where: { unique_user_content: { contentId, userId } },
+  });
+  return { isInWatchlist: !!listed };
+};
+
 export const watchlistService = {
   addToWatchlist,
   removeFromWatchlist,
   getMyWatchlist,
+  isInWatchlist,
 };

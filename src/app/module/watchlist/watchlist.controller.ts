@@ -51,8 +51,21 @@ const getMyWatchlist = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const isInWatchlist = catchAsync(async (req: Request, res: Response) => {
+  const contentId = req.params.contentId as string;
+  const userId = req.user.userId as string;
+  const result = await watchlistService.isInWatchlist(contentId, userId);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "Watchlist fetched successfully",
+    data: result,
+  });
+});
+
 export const watchlistController = {
   addToWatchlist,
   removeFromWatchlist,
   getMyWatchlist,
+  isInWatchlist,
 };
