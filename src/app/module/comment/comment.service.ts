@@ -1,22 +1,3 @@
-/*  
-model Comment {
-    id              String   @id @default(uuid())
-    reviewId        String
-    userId          String
-    parentCommentId String?
-    body            String
-    createdAt       DateTime @default(now())
-    updatedAt       DateTime @updatedAt
-    review  Review    @relation(fields: [reviewId], references: [id], onDelete: Cascade)
-    user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-    parent  Comment?  @relation("CommentReplies", fields: [parentCommentId], references: [id], onDelete: Cascade)
-    replies Comment[] @relation("CommentReplies")
-
-    @@index([reviewId])
-    @@index([parentCommentId])
-}
-*/
-
 import status from "http-status";
 import AppError from "../../errorHelpers/AppError";
 import { prisma } from "../../lib/prisma";
