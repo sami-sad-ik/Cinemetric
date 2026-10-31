@@ -13,6 +13,15 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(process.cwd(), "src", "app", "template"));
+//stripe webhook
+app.use(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (req: Request, res: Response) => {
+    console.log(req.body);
+    res.status(200).json({ received: true });
+  },
+);
 
 app.use(
   cors({
