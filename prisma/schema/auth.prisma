@@ -6,6 +6,7 @@ model User {
   image         String?
   role          Role        @default(USER)
   status        UserStatus  @default(ACTIVE)
+  subscribed    Boolean     @default(false)
   isDeleted     Boolean     @default(false)
   deletedAt     DateTime?
   createdAt     DateTime    @default(now())
@@ -13,6 +14,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   watchlists    Watchlist[]
+  payment       Payment?
   reviews       Review[]
   likes         Like[]
   comments      Comment[]

@@ -77,6 +77,11 @@ export type Content = Prisma.ContentModel
  */
 export type Like = Prisma.LikeModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model Review
  * 
  */

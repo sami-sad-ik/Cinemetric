@@ -44,3 +44,8 @@ enum ReviewStatus {
     PUBLISHED
     REJECTED
 }
+
+enum PaymentStatus {
+    PAID
+    UNPAID
+}
