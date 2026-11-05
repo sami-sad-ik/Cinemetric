@@ -14,7 +14,7 @@ model User {
   sessions      Session[]
   accounts      Account[]
   watchlists    Watchlist[]
-  payment       Payment?
+  payments      Payment[]
   reviews       Review[]
   likes         Like[]
   comments      Comment[]

@@ -1,6 +1,6 @@
 model Payment {
     id                 String        @id @default(uuid())
-    userId             String        @unique
+    userId             String
     amount             Float
     transactionId      String        @unique @db.Uuid()
     stripeEventId      String?       @unique

@@ -79,7 +79,8 @@ export type ReviewStatus = (typeof ReviewStatus)[keyof typeof ReviewStatus]
 
 export const PaymentStatus = {
   PAID: 'PAID',
-  UNPAID: 'UNPAID'
+  UNPAID: 'UNPAID',
+  FAILED: 'FAILED'
 } as const
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]

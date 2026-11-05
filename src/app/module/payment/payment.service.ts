@@ -37,10 +37,6 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
         };
       }
       await prisma.$transaction(async (tx) => {
-        await tx.user.update({
-          where: { id: userId },
-          data: { subscribed: true },
-        });
         await tx.payment.update({
           where: { id: paymentId },
           data: {
@@ -53,6 +49,12 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
             paymentGatewayData: session as any,
           },
         });
+        if (session.payment_status === "paid") {
+          await tx.user.update({
+            where: { id: userId },
+            data: { subscribed: true },
+          });
+        }
       });
       console.log(
         `Processed checkout completed event for user ${userId} and payment ${paymentId}.`,
@@ -61,9 +63,17 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
     }
     case "checkout.session.expired": {
       const session = event.data.object;
-      console.log(
-        `Checkout session ${session.id} expired. Marking associated payment as failed`,
-      );
+      const paymentId = session.metadata?.paymentId;
+      if (paymentId) {
+        await prisma.payment.updateMany({
+          where: { id: paymentId, status: { not: PaymentStatus.PAID } },
+          data: {
+            status: PaymentStatus.FAILED,
+            stripeEventId: event.id,
+            paymentGatewayData: session as any,
+          },
+        });
+      }
       break;
     }
     case "payment_intent.payment_failed": {
