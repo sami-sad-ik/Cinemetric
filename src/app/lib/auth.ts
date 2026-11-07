@@ -65,6 +65,20 @@ export const auth = betterAuth({
           const user = await prisma.user.findUnique({
             where: { email },
           });
+          if (!user) {
+            console.log(
+              `user with this ${email} not found.Can't send verification otp`,
+            );
+            return;
+          }
+
+          if (user && user.role === Role.SUPER_ADMIN) {
+            console.log(
+              `user with this ${email} is super admin. Skipping sending verification otp`,
+            );
+            return;
+          }
+
           if (user) {
             await sendEmail({
               to: email,
